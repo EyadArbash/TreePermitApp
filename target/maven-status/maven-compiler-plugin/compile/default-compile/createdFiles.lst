@@ -1,0 +1,3 @@
+treePermit\application\App.class
+treePermit\application\WebSecurityConfig.class
+treePermit\controller\WebController.class
