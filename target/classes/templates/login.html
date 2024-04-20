@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>Anmelden</title>
@@ -23,26 +22,22 @@
             max-width: 300px;
             margin: auto;
         }
-        input[type=email], input[type=password] {
+        input[type=email], input[type=password], input[type=submit], button {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
             border-radius: 5px;
         }
-        input[type=submit], button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        input[type=email], input[type=password] {
+            border: 1px solid #ccc;
         }
         input[type=submit] {
+            border: none;
             background-color: #4CAF50;
             color: white;
         }
         button {
+            border: none;
             background-color: #f8f9fa;
             color: black;
         }
@@ -53,20 +48,30 @@
 </head>
 <body>
     <div class="container">
-        <h2>anmelden</h2>
+        <h2>Anmelden</h2>
+        <div id="error-message" style="color: red; margin-bottom: 10px;"></div>
         <form action="/login" method="post">
+            <input type="hidden" name="_csrf" value="${_csrf.token}" /> <!-- CSRF Token -->
             <div>
-                <input type="email" id="email" name="email" placeholder="E-Mail" required>
+                <input type="email" id="username" name="username" placeholder="E-Mail" required> <!-- Änderung des Feldnamens zu 'username' -->
             </div>
             <div>
                 <input type="password" id="password" name="password" placeholder="Passwort" required>
             </div>
             <div>
-                <input type="submit" value="anmelden">
+                <input type="submit" value="Anmelden">
             </div>
         </form>
-        <button onclick="window.location.href='/register';">registrieren</button>
+        <button onclick="window.location.href='/register';">Registrieren</button>
     </div>
+    <script>
+       window.onload = function() {
+           var urlParams = new URLSearchParams(window.location.search);
+           if (urlParams.has('error')) {
+               var errorDiv = document.getElementById('error-message');
+               errorDiv.innerHTML = 'Ungültige E-Mail oder Passwort.';
+           }
+       };
+   </script>
 </body>
 </html>
-
