@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Anmelden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 300px;
+            margin: auto;
+        }
+        input[type=email], input[type=password] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type=submit], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            background-color: #f8f9fa;
+            color: black;
+        }
+        button:hover {
+            background-color: #e2e6ea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>anmelden</h2>
+        <form action="/login" method="post">
+            <div>
+                <input type="email" id="email" name="email" placeholder="E-Mail" required>
+            </div>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Passwort" required>
+            </div>
+            <div>
+                <input type="submit" value="anmelden">
+            </div>
+        </form>
+        <button onclick="window.location.href='/register';">registrieren</button>
+    </div>
+</body>
+</html>
+
