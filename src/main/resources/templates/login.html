@@ -1,92 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Anmelden</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-        }
-        h2 {
-            margin-bottom: 20px;
-        }
-        form {
-            max-width: 300px;
-            margin: auto;
-        }
+	<meta charset="UTF-8">
+	<title>Anmelden</title>
 
-        input[type=email], input[type=password], input[type=submit], button {
-            width: 100%;
-            padding: 10px;
-}
-        input[type=email], input[type=password] {
-            width: 104%;
-            padding: 20px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
+	<link rel="stylesheet" th:href="@{/resources/css/login.css}">
 
-        input[type=email], input[type=password] {
-            border: 1px solid #ccc;
-}
-        input[type=submit], button {
-            width: 124%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        input[type=submit] {
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-        }
-        button {
-            border: none;
-            background-color: #f8f9fa;
-            color: black;
-        }
-        button:hover {
-            background-color: #e2e6ea;
-        }
-		
-    </style>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Anmelden</h2>
-        <div id="error-message" style="color: red; margin-bottom: 10px;"></div>
-        <form action="/login" method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}" /> <!-- CSRF Token -->
-            <div>
-                <input type="email" id="username" name="username" placeholder="E-Mail" required> <!-- Änderung des Feldnamens zu 'username' -->
-            </div>
-            <div>
-                <input type="password" id="password" name="password" placeholder="Passwort" required>
-            </div>
-            <div>
-                <input type="submit" value="Anmelden">
-            </div>
-        </form>
-        <button onclick="window.location.href='/register';">Registrieren</button>
-    </div>
-    <script>
-       window.onload = function() {
-           var urlParams = new URLSearchParams(window.location.search);
-           if (urlParams.has('error')) {
-               var errorDiv = document.getElementById('error-message');
-               errorDiv.innerHTML = 'Ungültige E-Mail oder Passwort.';
-           }
-       };
-   </script>
+	<div class="container">
+		<h2>Anmelden</h2>
+		<div id="error-message" style="color: red; margin-bottom: 10px;"></div>
+		<form action="/login" method="post">
+			<input type="hidden" name="_csrf" value="${_csrf.token}" /> <!-- CSRF Token -->
+			<div>
+				<input type="email" id="username" name="username" placeholder="E-Mail" required>
+				<!-- Änderung des Feldnamens zu 'username' -->
+			</div>
+			<div>
+				<input type="password" id="password" name="password" placeholder="Passwort" required>
+			</div>
+			<div>
+				<input type="submit" value="Anmelden">
+			</div>
+		</form>
+		<button onclick="window.location.href='/register';">Registrieren</button>
+	</div>
+	<script>
+		window.onload = function () {
+			var urlParams = new URLSearchParams(window.location.search);
+			if (urlParams.has('error')) {
+				var errorDiv = document.getElementById('error-message');
+				errorDiv.innerHTML = 'Ungültige E-Mail oder Passwort.';
+			}
+		};
+	</script>
 </body>
+
 </html>

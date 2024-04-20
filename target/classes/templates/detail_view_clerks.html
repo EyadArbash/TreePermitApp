@@ -1,62 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Sachbearbeiter-Übersicht</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .uebersicht {
-            width: 80%;
-            margin: 50px auto;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: white;
-            text-align: center;
-        }
-        .antragsdetails {
-            background-color: #e0e0e0;
-            margin: 20px;
-            padding: 20px;
-            height: 150px; /* Anpassen, je nach Inhalt */
-        }
-        .button {
-            padding: 10px 25px;
-            margin: 10px;
-            border: none;
-            border-radius: 3px;
-            color: white;
-            cursor: pointer;
-        }
-        .kommunikationsinterface {
-            background-color: #4CAF50;
-            display: inline-block;
-            margin: 20px;
-        }
-        .genehmigen {
-            background-color: #28a745;
-        }
-        .ablehnen {
-            background-color: #dc3545;
-        }
-        .button:hover {
-            opacity: 0.8;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>Sachbearbeiter-Übersicht</title>
+	<link rel="stylesheet" th:href="@{/resources/css/detail_view_clerks.css}">
+
 </head>
+
 <body>
-    <div class="uebersicht">
-        <h2>Sachbearbeiter-Übersicht</h2>
-        <div class="antragsdetails">
-            <!-- Antragsdetails hier -->
-        </div>
-        <button onclick="window.location.href='/communication_interface';" class="button kommunikationsinterface">KOMMUNIKATIONSINTERFACE</button>
-        <button class="button genehmigen">GENEHMIGEN</button>
-        <button class="button ablehnen">ABLEHNEN</button>
-    </div>
+	<div class="uebersicht">
+		<h2>Sachbearbeiter-Übersicht</h2>
+		<div class="antragsdetails">
+			<!-- Antragsdetails hier -->
+		</div>
+		<button onclick="window.location.href='/communication_interface';"
+			class="button kommunikationsinterface">KOMMUNIKATIONSINTERFACE</button>
+		<button class="button genehmigen">GENEHMIGEN</button>
+		<button class="button ablehnen">ABLEHNEN</button>
+	</div>
 </body>
+
 </html>
