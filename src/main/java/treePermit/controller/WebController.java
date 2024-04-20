@@ -20,5 +20,24 @@ public class WebController {
 	public String dashboardApplicant() {
 		return "dashboard_applicant";
 	}
-
+	@GetMapping("/application_form")
+	public String applicationForm() {
+		return "application_form";
+	}
+	
+	@GetMapping("/dashboard_clerks")
+	public String dashboardClerks() {
+		return "dashboard_clerks";
+	}
+	
+	@GetMapping("/detail_view_clerks")
+	public String detailViewClerks() {
+		return "detail_view_clerks";
+	}
+	
+	@GetMapping("/communication_interface")
+	public String communicationInterface() {
+		return "communication_interface";
+	}
 }
+
