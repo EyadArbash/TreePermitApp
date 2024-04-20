@@ -21,11 +21,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
-                .username("user@example.com")
-                .password(passwordEncoder().encode("password123")) // Passwort verschlüsselt
-                .roles("USER") // Stellen Sie sicher, dass die Rolle richtig zugewiesen ist
-                .build();
-        return new InMemoryUserDetailsManager(user);
+            .username("user@example.com")
+            .password(passwordEncoder().encode("password123"))
+            .roles("USER")
+            .build();
+        
+        UserDetails clerk = User.builder()
+            .username("clerk@example.com")
+            .password(passwordEncoder().encode("clerkpassword"))
+            .roles("CLERK")
+            .build();
+
+        return new InMemoryUserDetailsManager(user, clerk);
     }
 
     @Bean
@@ -43,19 +50,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/", "/register", "/login").permitAll()
-                .antMatchers("/dashboard_applicant").hasRole("USER")
-            .and()
-            .formLogin()
+        http.authorizeRequests()
+            .antMatchers("/", "/register", "/login").permitAll()
+            .antMatchers("/dashboard_applicant", "/application_form", "/communication_interface").hasRole("USER")
+            .antMatchers("/dashboard_clerks").hasRole("CLERK")
+            .and().formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/dashboard_applicant", true) // Fügen Sie dies hinzu
+                .successHandler((request, response, authentication) -> {
+                    if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_USER"))) {
+                        response.sendRedirect("/dashboard_applicant");
+                    } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CLERK"))) {
+                        response.sendRedirect("/dashboard_clerks");
+                    } else {
+                        response.sendRedirect("/");
+                    }
+                })
                 .permitAll()
-            .and()
-            .logout()
-                .permitAll()
-            .and()
-            .csrf().disable();
+            .and().logout().permitAll()
+            .and().csrf().disable();
     }
 }

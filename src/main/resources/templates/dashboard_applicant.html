@@ -17,6 +17,13 @@
         .dashboard {
             width: 350px;
             text-align: center;
+            position: relative; /* Added for positioning the header bar absolutely */
+        }
+        .header-bar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 10px;
         }
         .button {
             width: 100%;
@@ -32,7 +39,17 @@
         }
         .button.gray {
             background-color: #6c757d;
+        }
+        .logout-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #f44336;
             color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .logout-button:hover {
+            background-color: #e31b0c;
         }
         h2 {
             color: #333;
@@ -43,8 +60,13 @@
 </head>
 <body>
     <div class="dashboard">
+        <div class="header-bar">
+            <form action="/logout" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
         <h2>Antragssteller-Übersicht</h2>
-        <button class="button green" onclick="window.location.href='/new-request';">NEUEN ANTRAG STELLEN</button>
+        <button class="button green" onclick="window.location.href='/application_form';">NEUEN ANTRAG STELLEN</button>
         <button class="button gray" onclick="window.location.href='/my-requests';">MEINE ANTRÄGE</button>
     </div>
 </body>
