@@ -7,18 +7,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class WebController {
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
 
  
-
-    @GetMapping("/register")
-    public String register() {
-        System.out.println("Register-Methode aufgerufen!");
-        return "register";
-    }
     
+	@GetMapping("/")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/register")
+	public String register() {
+		return "register";
+	}
+	
+	@GetMapping("/dashboard_applicant")
+	public String dashboardApplicant() {
+		return "dashboard_applicant";
+	}
+
 
 }
