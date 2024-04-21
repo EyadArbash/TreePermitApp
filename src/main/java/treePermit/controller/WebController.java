@@ -27,9 +27,9 @@ public class WebController {
 		return "register";
 	}
 
-	@GetMapping("/dashboard_applicant")
+	@GetMapping("/dashboard_user")
 	public String dashboardApplicant() {
-		return "dashboard_applicant";
+		return "dashboard_user";
 	}
 
 	@GetMapping("/application_form")

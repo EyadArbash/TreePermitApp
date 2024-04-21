@@ -52,13 +52,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/", "/register", "/login").permitAll()
-            .antMatchers("/dashboard_applicant", "/application_form", "/communication_interface").hasRole("USER")
+            .antMatchers("/dashboard_user", "/application_form", "/communication_interface").hasRole("USER")
             .antMatchers("/dashboard_clerks").hasRole("CLERK")
             .and().formLogin()
                 .loginPage("/login")
                 .successHandler((request, response, authentication) -> {
                     if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_USER"))) {
-                        response.sendRedirect("/dashboard_applicant");
+                        response.sendRedirect("/dashboard_user");
                     } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CLERK"))) {
                         response.sendRedirect("/dashboard_clerks");
                     } else {
