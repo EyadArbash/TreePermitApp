@@ -11,9 +11,9 @@
 <body>
 	<div class="container">
 		<h2>Neuen Account erstellen</h2>
-		<form action="/register" method="post">
+		<form th:action="@{/register}" method="post" th:object="${registrationDto}">
 			<div>
-				<input type="text" id="name" name="name" placeholder="Name" required>
+				<input type="text" id="username" name="username" placeholder="Name" required>
 			</div>
 			<div>
 				<input type="email" id="email" name="email" placeholder="E-Mail" required>
