@@ -22,11 +22,6 @@ public class WebController {
 		return modelAndView;
 	}
 
-	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
-
 	@GetMapping("/dashboard_user")
 	public String dashboardApplicant() {
 		return "dashboard_user";
