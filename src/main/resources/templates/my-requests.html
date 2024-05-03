@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Meine Anträge</title>
+<style>
+/* Allgemeine Stildefinitionen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+a {
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.antraege-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.antraege-table th, .antraege-table td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.antraege-table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Farben für die verschiedenen Status */
+.status-processing { background-color: #ffc107; } /* Gelb für "Wird bearbeitet" */
+.status-approved { background-color: #28a745; color: #fff; } /* Grün für "Genehmigt" */
+.status-denied { background-color: #dc3545; color: #fff; } /* Rot für "Abgelehnt" */
+</style>
+</head>
+<body>
+
+<h2>Meine Anträge</h2>
+<a href="/dashboard_applicant">Zurück zum Dashboard</a>
+<table class="antraege-table">
+  <tr>
+    <th>Antragssteller</th>
+    <th>Adresse</th>
+    <th>Stadt</th>
+    <th>Status</th>
+  </tr>
+  <!-- Iteriere über die Anträge, die vom Server übergeben werden -->
+  <tr th:each="antrag : ${antraege}">
+    <td th:text="${antrag.nummer}">001</td>
+    <td th:text="${antrag.bezeichnung}">Antrag auf Urlaub</td>
+    <!-- Stelle auch die Stadt dar -->
+    <td th:text="${antrag.stadt}">Musterstadt</td>
+    <!-- Verwende th:classappend, um die Farben basierend auf dem Status anzuwenden -->
+    <td th:classappend="${antrag.status == 'Neu' ? 'status-processing' : 
+                        (antrag.status == 'Genehmigt' ? 'status-approved' : 
+                        (antrag.status == 'Abgelehnt' ? 'status-denied' : ''))}"
+        th:text="${antrag.status}">Wird bearbeitet</td>
+  </tr>
+  <!-- Hier endet die Iteration -->
+</table>
+
+</body>
+</html>
