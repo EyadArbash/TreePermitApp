@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("email")  // Setze den Benutzernamen Parameter auf 'email'
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler((request, response, authentication) -> {
                 	 System.out.println("Authentication: " + authentication);

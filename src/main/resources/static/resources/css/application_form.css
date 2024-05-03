@@ -2,11 +2,6 @@ body {
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	background-color: #f4f4f4;
 }
 
 .formular {
@@ -15,6 +10,9 @@ body {
 	background: white;
 	border: 1px solid #ddd;
 	border-radius: 5px;
+	position: absolute;
+    left: 40%;
+    top: 12%;
 }
 
 .input-group {
@@ -62,4 +60,19 @@ input[type=text], textarea {
 h2 {
 	text-align: center;
 	color: #333;
+}
+
+.header-bar {
+	background-color: cadetblue;
+	height: 40px;
+}
+
+.logout-button {
+	width: 65px;
+	height: 30px;
+	background-color: red;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	color: white;
 }

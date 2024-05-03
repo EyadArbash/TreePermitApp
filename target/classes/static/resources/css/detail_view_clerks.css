@@ -47,3 +47,18 @@ body {
 .button:hover {
 	opacity: 0.8;
 }
+
+.header-bar {
+	background-color: cadetblue;
+	height: 40px;
+}
+
+.logout-button {
+	width: 65px;
+	height: 30px;
+	background-color: red;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	color: white;
+}
