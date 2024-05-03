@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
+
 <meta charset="UTF-8">
 <title>Sachbearbeiter-Übersicht</title>
-
-
 <link rel="stylesheet" th:href="@{/resources/css/dashboard_clerks.css}">
-
 </head>
-
 <body>
 	<div class="header-bar">
 		<form action="/logout" method="post">
@@ -29,6 +25,17 @@
 				ANSEHEN</button>
 		</div>
 	</div>
-</body>
 
+    <div class="header-bar">
+        <form action="/logout" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+    <div class="uebersicht">
+        <h2>Sachbearbeiter-Übersicht</h2>
+        <div class="antrag" th:each="antrag : ${antraege}">
+            <div th:text="'Antrag #' + ${antrag.nummer}"></div>
+        </div>
+    </div>
+</body>
 </html>

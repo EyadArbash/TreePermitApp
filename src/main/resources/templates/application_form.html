@@ -14,7 +14,9 @@
 	</div>
     <div class="formular">
         <h2>Antragsformular</h2>
-        <form  method="post">
+        <!-- Stellen Sie sicher, dass Sie die korrekte URL im action-Attribut angeben -->
+        <form action="/submit-application" method="post">
+           
             <div class="input-group">
                 <input type="text" id="vorname" name="vorname" placeholder="Vorname" required>
             </div>
@@ -31,7 +33,12 @@
                 <input type="text" id="plz" name="plz" placeholder="PLZ" required>
             </div>
             <input type="submit" value="SENDEN" class="button">
+
+            <!-- Verwenden Sie th:onclick für Thymeleaf, um den Link zu generieren -->
+            <button type="button" class="buttonAb" th:onclick="|window.location.href='@{/dashboard_applicant}'|">ABBRECHEN</button>
+
             <button class="buttonAb" onclick="window.location.href='/dashboard_user';">ABBRECHEN</button>
+
         </form>
     </div>
 </body>
