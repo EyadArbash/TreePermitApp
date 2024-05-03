@@ -27,8 +27,12 @@
                 <input type="text" id="plz" name="plz" placeholder="PLZ" required>
             </div>
             <input type="submit" value="SENDEN" class="button">
+
             <!-- Verwenden Sie th:onclick für Thymeleaf, um den Link zu generieren -->
             <button type="button" class="buttonAb" th:onclick="|window.location.href='@{/dashboard_applicant}'|">ABBRECHEN</button>
+
+            <button class="buttonAb" onclick="window.location.href='/dashboard_user';">ABBRECHEN</button>
+
         </form>
     </div>
 </body>

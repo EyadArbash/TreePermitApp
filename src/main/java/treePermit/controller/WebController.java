@@ -1,5 +1,6 @@
 package treePermit.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import treePermit.repository.AntragRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +20,8 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class WebController {
-
+	@Autowired
+	private AntragRepository antragRepository;
 	@GetMapping("/")
 	public String login() {
 		return "redirect:/login";
@@ -32,14 +36,9 @@ public class WebController {
 		return modelAndView;
 	}
 
-	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
-
-	@GetMapping("/dashboard_applicant")
+	@GetMapping("/dashboard_user")
 	public String dashboardApplicant() {
-		return "dashboard_applicant";
+		return "dashboard_user";
 	}
 
 	@GetMapping("/application_form")
@@ -47,20 +46,23 @@ public class WebController {
 		return "application_form";
 	}
 
-	@GetMapping("/dashboard_clerks")
-	public String dashboardClerks(Model model) {
-	    try {
-	        List< Antrag> antraege = new ArrayList<>(DataStore.antraege.values());
-	model.addAttribute("antraege", antraege);
-	} catch (Exception e) {
-	e.printStackTrace(); // Dies gibt den Fehler auf der Konsole aus, um eine bessere Diagnose zu ermöglichen
-	return "error"; // Leite zu einer allgemeinen Fehlerseite um
-	}
 
-	
-	// Leite den Benutzer auf das Dashboard der Sachbearbeiter weiter
-	return "dashboard_clerks";
-	}
+    @GetMapping("/dashboard_clerks")
+    public String dashboardClerks(Model model) {
+        try {
+            // Lade alle Anträge direkt aus der Datenbank
+            List<Antrag> antraege = antragRepository.findAll();
+
+            // Füge die Anträge dem Model hinzu, damit sie in der Ansicht verwendet werden können
+            model.addAttribute("antraege", antraege);
+
+            // Leite den Benutzer auf das Dashboard der Sachbearbeiter weiter
+            return "dashboard_clerks";  // Stelle sicher, dass "dashboard_clerks" dem Namen deiner HTML-Datei entspricht
+        } catch (Exception e) {
+            e.printStackTrace();  // Dies gibt den Fehler auf der Konsole aus, um eine bessere Diagnose zu ermöglichen
+            return "error";  // Leite zu einer allgemeinen Fehlerseite um
+        }
+    }
 	
 	@GetMapping("/detail_view_clerks")
 	public String detailViewClerks() {
@@ -72,16 +74,17 @@ public class WebController {
 		return "communication_interface";
 	}
 	
-	@GetMapping("/my-requests")
-	public String myRequests(Model model) {
-	    // Lade alle Anträge aus der globalen Map
-	    List <Antrag> antraege = new ArrayList<>(DataStore.antraege.values());
-	 // Füge die Anträge dem Model hinzu, damit sie in der Ansicht verwendet werden können
-	    model.addAttribute("antraege", antraege);
+	 @GetMapping("/my-requests")
+	    public String myRequests(Model model) {
+	        // Lade alle Anträge direkt aus der Datenbank
+	        List<Antrag> antraege = antragRepository.findAll();
+	        
+	        // Füge die Anträge dem Model hinzu, damit sie in der Ansicht verwendet werden können
+	        model.addAttribute("antraege", antraege);
 
-	    // Leite den Benutzer zur HTML-Seite "Meine Anträge" weiter
-	    return "my-requests";
-	}
+	        // Leite den Benutzer zur HTML-Seite "Meine Anträge" weiter
+	        return "my-requests";  // Stelle sicher, dass "my-requests" dem Namen deiner HTML-Datei entspricht
+	    }
 
 	
 	@PostMapping("/submit-application")
@@ -91,12 +94,16 @@ public class WebController {
 	                                      @RequestParam("stadt") String stadt,
 	                                      @RequestParam("plz") String plz) {
 	    // Erstelle ein neues Antrag-Objekt
-	    Antrag newAntrag = new Antrag(vorname, nachname, stadt, "Wird bearbeitet");
-	    // Verwende eine einfache UUID als Schlüssel für die Speicherung in der globalen Map
-	    String key = UUID.randomUUID().toString();
-	    DataStore.antraege.put(key, newAntrag);
+	    Antrag newAntrag = new Antrag(null, "Beschreibung deines Antrags", stadt, "Wird bearbeitet");
+	    newAntrag.setNummer(UUID.randomUUID().toString()); // Setzt eine einzigartige Nummer für den Antrag
+	    newAntrag.setBezeichnung("Beschreibung deines Antrags"); // Füge eine Bezeichnung hinzu, falls erforderlich
+
+	    // Speichere den neuen Antrag in der Datenbank über das Repository
+	    antragRepository.save(newAntrag);
 
 	    // Weiterleitung auf die Seite "Meine Anträge"
 	    return new ModelAndView("redirect:/my-requests");
 	}
+
+	
 }
