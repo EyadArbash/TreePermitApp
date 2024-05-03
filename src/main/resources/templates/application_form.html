@@ -6,6 +6,12 @@
     <link rel="stylesheet" th:href="@{/resources/css/application_form.css}">
 </head>
 <body>
+
+	<div class="header-bar">
+		<form action="/logout" method="post">
+			<button type="submit" class="logout-button">Logout</button>
+		</form>
+	</div>
     <div class="formular">
         <h2>Antragsformular</h2>
         <!-- Stellen Sie sicher, dass Sie die korrekte URL im action-Attribut angeben -->

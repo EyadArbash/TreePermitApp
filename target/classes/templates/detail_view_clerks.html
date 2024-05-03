@@ -5,10 +5,14 @@
 	<meta charset="UTF-8">
 	<title>Sachbearbeiter-Übersicht</title>
 	<link rel="stylesheet" th:href="@{/resources/css/detail_view_clerks.css}">
-
 </head>
 
 <body>
+	<div class="header-bar">
+		<form action="/logout" method="post">
+			<button type="submit" class="logout-button">Logout</button>
+		</form>
+	</div>
 	<div class="uebersicht">
 		<h2>Sachbearbeiter-Übersicht</h2>
 		<div class="antragsdetails">
