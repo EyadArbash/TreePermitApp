@@ -57,11 +57,15 @@
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	</dependency>
+	
+	<!-- Dependency für Spring Boot Starter JMS-Kommunikationsmodelle:Point-to-Point -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-activemq</artifactId>
+	</dependency>
 
     
 </dependencies>
-
-  
 
   
 </project>

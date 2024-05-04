@@ -1,13 +1,18 @@
 package treePermit.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import treePermit.service.MessageSender;
+
 @Controller
 public class WebController {
-
+	
+	@Autowired
+	private MessageSender messageSender;
 	@GetMapping("/")
 	public String login() {
 		return "redirect:/login";
@@ -42,8 +47,14 @@ public class WebController {
 		return "detail_view_clerks";
 	}
 
+//	@GetMapping("/communication_interface")
+//	public String communicationInterface() {
+//		return "communication_interface";
+//	}
+	
 	@GetMapping("/communication_interface")
-	public String communicationInterface() {
-		return "communication_interface";
+	public String sendMessage() {
+	    messageSender.sendMessage("queueName", "Hello, JMS!");
+	    return "communication_interface";
 	}
 }

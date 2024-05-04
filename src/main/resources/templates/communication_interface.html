@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Kommunikationsinterface</title>
-      <link rel="stylesheet" th:href="@{/resources/css/communication_interface.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/communication_interface.css}">
+   
 </head>
 <body>
     <div class="chat-interface">
@@ -12,9 +13,59 @@
             <!-- Nachrichtenverlauf hier -->
         </div>
         <div class="input-group">
-            <input type="text" placeholder="Nachricht">
-            <button type="button">SENDEN</button>
+            <input id="senderInput" type="text" placeholder="Absender">
+            <input id="receiverInput" type="text" placeholder="Empfänger">
+            <textarea id="messageInput" placeholder="Nachricht" rows="6"></textarea>
+            <button id="sendMessageBtn" type="button">SENDEN</button>
         </div>
     </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        document.getElementById('sendMessageBtn').addEventListener('click', function() {
+            var sender = document.getElementById('senderInput').value;
+            var receiver = document.getElementById('receiverInput').value;
+            var message = document.getElementById('messageInput').value;
+
+            sendMessage(sender, receiver, message);
+            // Clear input fields after sending message
+            document.getElementById('senderInput').value = '';
+            document.getElementById('receiverInput').value = '';
+            document.getElementById('messageInput').value = '';
+        });
+
+        function sendMessage(sender, receiver, message) {
+            var url = '/send-message'; // Hier den richtigen Endpunkt für den Nachrichtenversand eintragen
+            var data = {
+                sender: sender,
+                receiver: receiver,
+                text: message
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Hier kann die Antwort vom Server verarbeitet werden, wenn benötigt
+                console.log('Nachricht erfolgreich gesendet:', data);
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
+        }
+
+        /*]]>*/
+    </script>
 </body>
 </html>
