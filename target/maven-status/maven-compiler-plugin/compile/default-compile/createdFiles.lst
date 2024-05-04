@@ -1,3 +1,13 @@
-treePermit\application\App.class
-treePermit\application\WebSecurityConfig.class
+treePermit\controller\DataStore.class
+treePermit\controller\Antrag.class
+treePermit\SecurityConfig.class
+treePermit\controller\RegistrationController.class
+treePermit\service\CustomUserDetailsService.class
+treePermit\repository\AntragRepository.class
 treePermit\controller\WebController.class
+treePermit\enums\Role.class
+treePermit\repository\UserRepository.class
+treePermit\Application.class
+treePermit\service\UserService.class
+treePermit\model\RegistrationDto.class
+treePermit\model\User.class
