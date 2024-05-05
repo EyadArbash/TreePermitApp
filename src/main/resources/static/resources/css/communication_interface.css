@@ -3,10 +3,6 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: #f4f4f4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
 }
 
 .chat-interface {
@@ -16,6 +12,9 @@ body {
 	border-radius: 5px;
 	padding: 20px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	position: absolute;
+	left: 36%;
+	top: 150px;
 }
 
 .message-window {
@@ -52,6 +51,7 @@ body {
 
 .input-group button:hover {
 	background-color: #45a049;
+
 
             font-family: Arial, sans-serif;
             margin: 0;
@@ -91,3 +91,19 @@ body {
         .input-group button:hover {
             background-color: rgb(0, 255, 64);
         }
+
+.header-bar {
+	background-color: cadetblue;
+	height: 40px;
+}
+
+.logout-button {
+	width: 65px;
+	height: 30px;
+	background-color: red;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	color: white;
+}
+
