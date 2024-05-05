@@ -8,5 +8,6 @@ import treePermit.controller.Antrag;
 
 // Das AntragRepository erweitert JpaRepository, das generische CRUD-Operationen bereitstellt.
 public interface AntragRepository extends JpaRepository<Antrag, Long> {
-    List<Antrag> findByStadt(String stadt);
+    List<Antrag> findByFamilienname(String familienname);
 }
+
