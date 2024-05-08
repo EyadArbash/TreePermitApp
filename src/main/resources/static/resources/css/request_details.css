@@ -1,0 +1,80 @@
+/* Basis-Styles für den gesamten Body und die Schriftarten */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Zentrierter Container für den Inhalt */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Überschrift-Styles */
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Styles für Abschnittsüberschriften */
+.fontColor {
+    font-size: 18px;
+    color: #0056b3;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Details der einzelnen Attribute des Antrags */
+.detail {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-left: 5px solid #0056b3;
+}
+
+.detail span {
+    font-weight: bold;
+}
+
+/* Button am Ende der Seite zur Navigation zurück */
+.step {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.select, .submit-button, .back-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.submit-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.back-button {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    cursor: pointer;
+}

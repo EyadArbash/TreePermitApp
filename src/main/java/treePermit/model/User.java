@@ -1,10 +1,14 @@
 package treePermit.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
@@ -32,6 +36,9 @@ public class User {
 	private String password;
 	
 	private String role;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Request> requests;
 
 	public String getRole() {
 		return role;
@@ -73,6 +80,14 @@ public class User {
 		this.email = email;
 	}
 
+	public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+	
 	@PrePersist
 	@PreUpdate
 	private void encryptPassword() {

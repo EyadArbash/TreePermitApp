@@ -14,28 +14,12 @@
 	</div>
 	<div class="uebersicht">
 		<h2>Sachbearbeiter-Übersicht</h2>
-		<div class="antrag">
-			<div>Antrag #1</div>
-			<button class="button" onclick="window.location.href='/antrag/1';">ANTRAG
-				ANSEHEN</button>
-		</div>
-		<div class="antrag">
-			<div>Antrag #2</div>
-			<button class="button" onclick="window.location.href='/antrag/2';">ANTRAG
+		<div th:each="request : ${allRequests}" class="requests">
+			<div th:text="'Antrag #' + ${request.id}">Antrag #1</div>
+			<button class="button"
+				th:onclick="'window.location.href=\'/request/' + ${request.id} + '\''">ANTRAG
 				ANSEHEN</button>
 		</div>
 	</div>
-
-    <div class="header-bar">
-        <form action="/logout" method="post">
-            <button type="submit" class="logout-button">Logout</button>
-        </form>
-    </div>
-    <div class="uebersicht">
-        <h2>Sachbearbeiter-Übersicht</h2>
-        <div class="antrag" th:each="antrag : ${antraege}">
-            <div th:text="'Antrag #' + ${antrag.nummer}"></div>
-        </div>
-    </div>
 </body>
 </html>
