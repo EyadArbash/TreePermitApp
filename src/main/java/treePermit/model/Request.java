@@ -1,18 +1,28 @@
-package treePermit.controller;
+package treePermit.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "antrag") // Der Tabellenname in der Datenbank
-public class Antrag {
+@Table(name = "request")
+public class Request {
+	
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Eindeutiger Identifier für jeden Antrag
+    private Long id;
 
     @Column(name = "familienname")
     private String familienname;
@@ -20,8 +30,8 @@ public class Antrag {
     @Column(name = "vornamen")
     private String vornamen;
 
-    @Column(name = "straße")
-    private String straße;
+    @Column(name = "strasse")
+    private String strasse;
 
     @Column(name = "hausnummer")
     private String hausnummer;
@@ -31,15 +41,28 @@ public class Antrag {
 
     @Column(name = "ort")
     private String ort;
+    
+    @Column(name = "telefon")
+    private String telefon;
 
-    @Column(name = "email")
+	@Column(name = "email")
     private String email;
 
     @Column(name = "art_gewaechs")
     private String artGewaechs;
+    
+    @Column(name = "baum_ausserhalb_wald")
+    private Boolean baumAusserhalbWald;
 
-    @Column(name = "straße_standort")
-    private String straßeStandort;
+    @Column(name = "baum_ausserhalb_kurzumtriebsplantage")
+    private Boolean baumAusserhalbKurzumtriebsplantage;
+
+    @Column(name = "baum_ausserhalb_gaertnerisch_genutzte_flaeche")
+    private Boolean baumAusserhalbGaertnerischGenutzteFlaeche;
+
+
+    @Column(name = "strasse_standort")
+    private String strasseStandort;
 
     @Column(name = "hausnummer_standort")
     private String hausnummerStandort;
@@ -51,30 +74,32 @@ public class Antrag {
     private String ortStandort;
 
     @Column(name = "startdatum_vorhaben")
-    private String startdatumVorhaben;
+    private LocalDate startdatumVorhaben;
 
     @Column(name = "enddatum_vorhaben")
-    private String enddatumVorhaben;
+    private LocalDate enddatumVorhaben;
 
     @Column(name = "beschreibung_vorhaben")
     private String beschreibungVorhaben;
 
-    // Standardkonstruktor wird für JPA benötigt
-    public Antrag() {}
+    public Request() {}
 
-    // Konstruktor mit Parametern
-    public Antrag(String familienname, String vornamen, String straße, String hausnummer, String plz, String ort,
-                  String email, String artGewaechs, String straßeStandort, String hausnummerStandort, String plzStandort,
-                  String ortStandort, String startdatumVorhaben, String enddatumVorhaben, String beschreibungVorhaben) {
+    public Request(String familienname, String vornamen, String strasse, String hausnummer, String plz, String ort, String telefon,
+                  String email, String artGewaechs, Boolean baumAusserhalbWald, Boolean baumAusserhalbKurzumtriebsplantage, Boolean baumAusserhalbGaertnerischGenutzteFlaeche, String strasseStandort, String hausnummerStandort, String plzStandort,
+                  String ortStandort, LocalDate startdatumVorhaben, LocalDate enddatumVorhaben, String beschreibungVorhaben) {
         this.familienname = familienname;
         this.vornamen = vornamen;
-        this.straße = straße;
+        this.strasse = strasse;
         this.hausnummer = hausnummer;
         this.plz = plz;
         this.ort = ort;
+        this.telefon = telefon;
         this.email = email;
         this.artGewaechs = artGewaechs;
-        this.straßeStandort = straßeStandort;
+        this.baumAusserhalbWald = baumAusserhalbWald;
+        this.baumAusserhalbKurzumtriebsplantage = baumAusserhalbKurzumtriebsplantage;
+        this.baumAusserhalbGaertnerischGenutzteFlaeche = baumAusserhalbGaertnerischGenutzteFlaeche;
+        this.strasseStandort = strasseStandort;
         this.hausnummerStandort = hausnummerStandort;
         this.plzStandort = plzStandort;
         this.ortStandort = ortStandort;
@@ -84,6 +109,15 @@ public class Antrag {
     }
 
     // Getter und Setter
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -108,12 +142,12 @@ public class Antrag {
         this.vornamen = vornamen;
     }
 
-    public String getStraße() {
-        return straße;
+    public String getStrasse() {
+        return strasse;
     }
 
-    public void setStraße(String straße) {
-        this.straße = straße;
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
     }
 
     public String getHausnummer() {
@@ -143,7 +177,15 @@ public class Antrag {
     public String getEmail() {
         return email;
     }
+    
+    public String getTelefon() {
+		return telefon;
+	}
 
+	public void setTelefon(String telefon) {
+		this.telefon = telefon;
+	}
+	
     public void setEmail(String email) {
         this.email = email;
     }
@@ -155,13 +197,38 @@ public class Antrag {
     public void setArtGewaechs(String artGewaechs) {
         this.artGewaechs = artGewaechs;
     }
-
-    public String getStraßeStandort() {
-        return straßeStandort;
+    
+    public Boolean getBaumAusserhalbWald() {
+        return baumAusserhalbWald;
     }
 
-    public void setStraßeStandort(String straßeStandort) {
-        this.straßeStandort = straßeStandort;
+    public void setBaumAusserhalbWald(Boolean baumAusserhalbWald) {
+        this.baumAusserhalbWald = baumAusserhalbWald;
+    }
+
+    public Boolean getBaumAusserhalbKurzumtriebsplantage() {
+        return baumAusserhalbKurzumtriebsplantage;
+    }
+
+    public void setBaumAusserhalbKurzumtriebsplantage(Boolean baumAusserhalbKurzumtriebsplantage) {
+        this.baumAusserhalbKurzumtriebsplantage = baumAusserhalbKurzumtriebsplantage;
+    }
+
+    public Boolean getBaumAusserhalbGaertnerischGenutzteFlaeche() {
+        return baumAusserhalbGaertnerischGenutzteFlaeche;
+    }
+
+    public void setBaumAusserhalbGaertnerischGenutzteFlaeche(Boolean baumAusserhalbGaertnerischGenutzteFlaeche) {
+        this.baumAusserhalbGaertnerischGenutzteFlaeche = baumAusserhalbGaertnerischGenutzteFlaeche;
+    }
+
+
+    public String getStrasseStandort() {
+        return strasseStandort;
+    }
+
+    public void setStrasseStandort(String strasseStandort) {
+        this.strasseStandort = strasseStandort;
     }
 
     public String getHausnummerStandort() {
@@ -188,19 +255,19 @@ public class Antrag {
         this.ortStandort = ortStandort;
     }
 
-    public String getStartdatumVorhaben() {
+    public LocalDate getStartdatumVorhaben() {
         return startdatumVorhaben;
     }
 
-    public void setStartdatumVorhaben(String startdatumVorhaben) {
+    public void setStartdatumVorhaben(LocalDate startdatumVorhaben) {
         this.startdatumVorhaben = startdatumVorhaben;
     }
 
-    public String getEnddatumVorhaben() {
+    public LocalDate getEnddatumVorhaben() {
         return enddatumVorhaben;
     }
 
-    public void setEnddatumVorhaben(String enddatumVorhaben) {
+    public void setEnddatumVorhaben(LocalDate enddatumVorhaben) {
         this.enddatumVorhaben = enddatumVorhaben;
     }
 
