@@ -24,12 +24,20 @@ body {
 }
 
 .button.green {
-	background-color: #4CAF50;
+	background-color: #008cba;
+}
+
+.button.green:hover {
+	background-color: #007ba7;
 }
 
 .button.gray {
 	background-color: #6c757d;
 	color: white;
+}
+
+.button.gray:hover {
+	background-color: #565b5f;
 }
 
 h2 {
@@ -51,4 +59,5 @@ h2 {
 	right: 10px;
 	top: 5px;
 	color: white;
+	cursor: pointer;
 }
