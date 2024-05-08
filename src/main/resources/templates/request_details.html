@@ -33,44 +33,45 @@
 		        <div class="detail">Beschreibung des Vorhabens: <span th:text="${request.beschreibungVorhaben}">Beschreibung</span></div>
         </div>
         <h2>Prüfungsschritte</h2>
-        <form th:action="@{/process_request}" method="post">
-            <input type="hidden" th:value="${request.id}" name="requestId" />
-            
-            <div class="step">
-                <label>Zuständigkeit prüfen:</label>
-                <select name="zustaendigkeit">
-                    <option value="true">Ja</option>
-                    <option value="false">Nein</option>
-                </select>
-            </div>
-
-            <div class="step">
-                <label>Schriftform und Vollständigkeit prüfen:</label>
-                <select name="vollstaendigkeit">
-                    <option value="true">Ja</option>
-                    <option value="false">Nein</option>
-                </select>
-            </div>
-
-            <div class="step">
-                <label>Prüfen, ob Vorhaben bereits umgesetzt wurde:</label>
-                <select name="umgesetzt">
-                    <option value="true">Ja</option>
-                    <option value="false">Nein</option>
-                </select>
-            </div>
-
-            <div class="step">
-                <label>Voraussetzungen erfüllt:</label>
-                <select name="voraussetzungen">
-                    <option value="true">Ja</option>
-                    <option value="false">Nein</option>
-                </select>
-            </div>
-
-            <button type="submit" class="submit-button">Antrag prüfen</button>
-        </form>
-        <button onclick="window.history.back()" class="back-button">Zurück</button>
+		<form th:action="@{/process_request}" method="post">
+		    <input type="hidden" th:value="${request.id}" name="requestId" />
+		
+		    <div class="step">
+		        <label>Zuständigkeit prüfen:</label>
+		        <select name="zustaendigkeit">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <div class="step">
+		        <label>Schriftform und Vollständigkeit prüfen:</label>
+		        <select name="vollstaendigkeit">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <div class="step">
+		        <label>Prüfen, ob Vorhaben bereits umgesetzt wurde:</label>
+		        <select name="vorhabenUmgesetzt">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <div class="step">
+		        <label>Voraussetzungen erfüllt:</label>
+		        <select name="voraussetzungenErfuellt">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <button type="submit" class="submit-button">Antrag prüfen</button>   
+		</form>
+		 <button onclick="window.history.back()" class="back-button">Zurück</button>
+       
     </div>
 </body>
 </html>

@@ -63,7 +63,7 @@ h1 {
 }
 
 .buttonAb {
-	background-color: #4CAF50; /* Green */
+	background-color: #008cba; /* Green */
 	border: none;
 	color: white;
 	padding: 10px 20px;
@@ -74,6 +74,10 @@ h1 {
 	margin: 4px 2px;
 	cursor: pointer;
 	border-radius: 5px;
+}
+
+.buttonAb:hover {
+	background-color: #007ba7;
 }
 
 .fontColor {
@@ -94,4 +98,5 @@ h1 {
 	right: 10px;
 	top: 5px;
 	color: white;
+	cursor: pointer;
 }

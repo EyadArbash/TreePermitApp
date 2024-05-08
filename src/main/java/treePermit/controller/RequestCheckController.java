@@ -18,7 +18,7 @@ public class RequestCheckController {
     public String processRequest(@ModelAttribute RequestCheck requestCheck, Model model) {
     	requestCheckRepository.save(requestCheck);
         
-        if (!requestCheck.isVollstaendigkeit() || !requestCheck.isZustaendigkeit() || requestCheck.isVorhabenUmgesetzt() || !requestCheck.isVoraussetzungenErfuellt()) {
+        if (!requestCheck.isVollstaendigkeit() || !requestCheck.isZustaendigkeit() || !requestCheck.isVorhabenUmgesetzt() || !requestCheck.isVoraussetzungenErfuellt()) {
             model.addAttribute("message", "Der Antrag wurde abgelehnt.");
             return "request_status";
         }
