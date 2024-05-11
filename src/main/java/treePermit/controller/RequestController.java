@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import treePermit.enums.RequestStatus;
 import treePermit.model.Request;
 import treePermit.model.User;
 import treePermit.repository.RequestRepository;
 import treePermit.repository.UserRepository;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,7 +21,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 
 @Controller
 public class RequestController {
@@ -84,6 +84,7 @@ public class RequestController {
 			throw new IllegalStateException("Benutzerdaten konnten nicht geladen werden.");
 		}
 		newRequest.setUser(currentUser);
+		newRequest.setStatus(RequestStatus.OFFEN);
 		requestRepository.save(newRequest);
 
 		return new ModelAndView("redirect:/my-requests");

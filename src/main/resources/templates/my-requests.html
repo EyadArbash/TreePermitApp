@@ -15,7 +15,7 @@
     <div class="container">
         <h1>Antragsdetails</h1>
         <div th:each="req, iterStat  : ${requests}" class="card">
-        	<button class="collapsible">Antrag #<span th:text="${iterStat.count}">1</span>: <span th:text="${req.familienname}"></span></button>
+        	<button class="collapsible">Antrag #<span th:text="${iterStat.count}">1</span>: <span th:class="${req.status != null ? 'status-' + req.status.toString().toLowerCase() : 'status-unbekannt'}" th:text="' - ' + (${req.status != null} ? ${req.status} : 'UNBEKANNT')"></span></button>
         	<div class="content">
 	        	<div class="fontColor">Angaben zur Antragstellende Person</div>
 		        <div class="detail">Familienname: <span th:text="${req.familienname}">Familienname</span></div>
@@ -39,6 +39,8 @@
 		        <div class="detail">Startdatum des Vorhabens: <span th:text="${req.startdatumVorhaben}">Startdatum</span></div>
 		        <div class="detail">Enddatum des Vorhabens: <span th:text="${req.enddatumVorhaben}">Enddatum</span></div>
 		        <div class="detail">Beschreibung des Vorhabens: <span th:text="${req.beschreibungVorhaben}">Beschreibung</span></div>
+				<div th:class="${req.status != null ? 'notification-' + req.status.toString().toLowerCase() : 'notification-unbekannt'}"  th:text="${req.notification != null ? req.notification.message : 'Unbekannt'}">
+				</div>
          	</div>
          </div>
          <button class="buttonAb" onclick="window.location.href='/dashboard_user';">Zurück</button>

@@ -34,7 +34,7 @@ body {
 
 .requests div {
     font-size: 16px;
-    color: #333;
+	font-weight: bold;
 }
 
 .button {
@@ -66,3 +66,19 @@ body {
 	color: white;
 	cursor: pointer;
 }
+
+.status-genehmigt {
+    color: green;
+}
+
+.status-abgelehnt {
+    color: red;
+}
+
+.status-offen {
+    color: blue;
+}
+.status-unbekannt {
+    color: gray;
+}
+
