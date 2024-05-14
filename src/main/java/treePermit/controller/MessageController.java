@@ -1,35 +1,44 @@
 package treePermit.controller;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import treePermit.service.MessagingService;
+import treePermit.model.Message;
 
-@RestController
+import treePermit.service.MessageService;
+
+@Controller
 public class MessageController {
 
     @Autowired
-    private MessagingService messagingService;
+    private MessageService messageService;
 
-    @PostMapping("/send-message")
-    public ResponseEntity<?> sendMessage(@RequestBody MessageRequest messageRequest) {
-        try {
-            // Benutzernamen und Nachrichtentext aus der Anfrage erhalten
-            String sender = messageRequest.getSender();
-            String resever = messageRequest.getReceiver();
-            String text = messageRequest.getText();
-           
-            // Nachricht senden und in der Datenbank speichern
-            messagingService.sendMessage(sender,resever,text);
-            
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @PostMapping("/send")
+    @ResponseBody
+    public Message sendMessage(@RequestBody Message message) {
+        message.setMessageDate(new Date());
+        return messageService.saveMessage(message);
     }
+
+    @GetMapping("/messages")
+    public List<Message> getAllMessages() {
+//	    messageSender.sendMessage("TreePermit", "Hello, JMS!");
+        return messageService.getAllMessages();
+    }
+    
+//    @GetMapping("/messages")
+//    public ResponseEntity<List<Message>> getAllMessages() {
+//        List<Message> messages = messageService.getAllMessages();
+//        return ResponseEntity.ok(messages);
+//    }
+
 }
 
 

@@ -4,16 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
 public class Message {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String sender;
     private String receiver;
     private String text;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date messageDate;
 
     public Message() {
     }
@@ -24,9 +28,8 @@ public class Message {
         this.text = text;
     }
 
-	public Message(String sender2, String text2) {
-        this.sender = sender2;
-        this.text = text2;
+    public Message(String text) {
+        this.text = text;
 	}
 
 	public Long getId() {
@@ -59,5 +62,13 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Date getMessageDate() {
+        return messageDate;
+    }
+
+    public void setMessageDate(Date messageDate) {
+        this.messageDate = messageDate;
     }
 }

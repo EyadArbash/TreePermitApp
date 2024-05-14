@@ -106,4 +106,50 @@ body {
 	top: 5px;
 	color: white;
 }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-container {
+            height: 80vh;
+            overflow-y: scroll;
+        }
+        .message {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .sender {
+            background-color: #DCF8C6;
+            align-self: flex-start;
+        }
+        .receiver {
+            background-color: #E5E5EA;
+            align-self: flex-end;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
 
