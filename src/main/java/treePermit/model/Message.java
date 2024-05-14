@@ -6,10 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Message {
+public class Message implements Serializable {
+    private static final long serialVersionUID = 1L; // optional, aber empfohlen für Serializable Klassen
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,9 +33,9 @@ public class Message {
 
     public Message(String text) {
         this.text = text;
-	}
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
