@@ -33,7 +33,7 @@ input[type=text], textarea {
 	margin-top: 20px;
 	border: none;
 	border-radius: 3px;
-	background-color: #4CAF50;
+	background-color: #008cba;
 	color: white;
 	cursor: pointer;
 }
@@ -54,7 +54,7 @@ input[type=text], textarea {
 }
 
 .button:hover {
-	background-color: #45a049;
+	background-color: #007ba7;
 }
 
 h2 {
@@ -75,4 +75,5 @@ h2 {
 	right: 10px;
 	top: 5px;
 	color: white;
+	cursor: pointer;
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Antragsdetails</title>
+    <link rel="stylesheet" th:href="@{/resources/css/request_details.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Antragsdetails</h1>
+        <div class="details">
+            <div class="fontColor">Angaben zur Antragstellende Person</div>
+		        <div class="detail">Familienname: <span th:text="${request.familienname}">Familienname</span></div>
+		        <div class="detail">Vornamen: <span th:text="${request.vornamen}">Vornamen</span></div>
+		        <div class="detail">Straße: <span th:text="${request.strasse}">Straße</span></div>
+		        <div class="detail">Hausnummer: <span th:text="${request.hausnummer}">Hausnummer</span></div>
+		        <div class="detail">PLZ: <span th:text="${request.plz}">PLZ</span></div>
+		        <div class="detail">Ort: <span th:text="${request.ort}">Ort</span></div>
+		        <div class="fontColor">Kommunikation</div>
+		        <div class="detail">Telefon: <span th:text="${request.telefon}">Telefonnummer</span></div>
+		        <div class="detail">E-Mail: <span th:text="${request.email}">E-Mail</span></div>
+		        <div class="fontColor">Angaben zum geplanten Vorhaben</div>
+		        <div class="detail">Art des Gewächses: <span th:text="${request.artGewaechs}">Art des Gewächses</span></div>
+		        <div class="detail">Steht der Baum außerhalb eines Waldes?: <span th:text="${request.baumAusserhalbWald ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
+		        <div class="detail">Steht der Baum außerhalb einer Kurzumtriebsplantage?: <span th:text="${request.baumAusserhalbKurzumtriebsplantage ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
+		        <div class="detail">Steht der Baum außerhalb einer gärtnerisch genutzten Fläche?: <span th:text="${request.baumAusserhalbGaertnerischGenutzteFlaeche ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
+		        <div class="detail">Straße Standort: <span th:text="${request.strasseStandort}">Straße Standort</span></div>
+		        <div class="detail">Hausnummer Standort: <span th:text="${request.hausnummerStandort}">Hausnummer Standort</span></div>
+		        <div class="detail">PLZ Standort: <span th:text="${request.plzStandort}">PLZ Standort</span></div>
+		        <div class="detail">Ort Standort: <span th:text="${request.ortStandort}">Ort Standort</span></div>
+		        <div class="detail">Startdatum des Vorhabens: <span th:text="${request.startdatumVorhaben}">Startdatum</span></div>
+		        <div class="detail">Enddatum des Vorhabens: <span th:text="${request.enddatumVorhaben}">Enddatum</span></div>
+		        <div class="detail">Beschreibung des Vorhabens: <span th:text="${request.beschreibungVorhaben}">Beschreibung</span></div>
+        </div>
+        <h2>Prüfungsschritte</h2>
+		<form th:action="@{/process_request}" method="post">
+		    <input type="hidden" th:value="${request.id}" name="requestId" />
+		
+		    <div class="step">
+		        <label>Zuständigkeit prüfen:</label>
+		        <select name="zustaendigkeit">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <div class="step">
+		        <label>Schriftform und Vollständigkeit prüfen:</label>
+		        <select name="vollstaendigkeit">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <div class="step">
+		        <label>Prüfen, ob Vorhaben bereits umgesetzt wurde:</label>
+		        <select name="vorhabenUmgesetzt">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <div class="step">
+		        <label>Voraussetzungen erfüllt:</label>
+		        <select name="voraussetzungenErfuellt">
+		            <option value="true">Ja</option>
+		            <option value="false">Nein</option>
+		        </select>
+		    </div>
+		
+		    <button type="submit" class="submit-button">Antrag prüfen</button>   
+		</form>
+		 <button onclick="window.history.back()" class="back-button">Zurück</button>
+       
+    </div>
+</body>
+</html>

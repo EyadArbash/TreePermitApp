@@ -1,52 +1,76 @@
+/* Grundlegende Seitenstile */
 body {
-	font-family: Arial, sans-serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+/* Zentrierter Container für den Inhalt */
 .container {
-	text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
 }
 
+/* Überschrift-Stil */
 h2 {
-	margin-bottom: 20px;
+    color: #0056b3;
+    margin-bottom: 30px;
 }
 
+/* Formularstile */
 form {
-	max-width: 300px;
-	margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-input[type=email], input[type=password] {
-	width: 104%;
-	padding: 20px;
-	margin: 10px 0;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+/* Gemeinsame Stile für alle Texteingaben */
+input[type="email"], input[type="password"], input[type="submit"], button {
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
-input[type=submit], button {
-	width: 124%;
-	padding: 15px;
-	margin: 10px 0;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #0056b3;
+    outline: none;
 }
 
-input[type=submit] {
-	background-color: #4CAF50;
-	color: white;
+/* Stil für den Anmeldebutton */
+input[type="submit"] {
+    border-color: transparent;
+    background-color: #008cba; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+input[type="submit"]:hover {
+    background-color: #007ba7; 
+}
+
+/* Stil für den Registrieren-Button */
 button {
-	background-color: #f8f9fa;
-	color: black;
+    background-color: #f8f9fa; /* Helles Grau */
+    color: black;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-	background-color: #e2e6ea;
+    background-color: #e2e6ea; /* Dunkleres Grau */
 }
