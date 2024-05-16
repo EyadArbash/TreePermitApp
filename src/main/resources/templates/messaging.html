@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging</title>
+</head>
+<body>
+    <h1>Messaging</h1>
+
+    <h2>Send Message</h2>
+    <form id="sendMessageForm">
+        <label for="sender">Sender:</label>
+        <input type="text" id="sender" name="sender"><br><br>
+        
+        <label for="receiver">Receiver:</label>
+        <input type="text" id="receiver" name="receiver"><br><br>
+        
+        <label for="text">Message:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50"></textarea><br><br>
+        
+        <button type="submit">Send</button>
+    </form>
+
+    <h2>Message History</h2>
+    <form id="getMessageHistoryForm">
+        <label for="historySender">Sender:</label>
+        <input type="text" id="historySender" name="sender"><br><br>
+        
+        <label for="historyReceiver">Receiver:</label>
+        <input type="text" id="historyReceiver" name="receiver"><br><br>
+        
+        <button type="submit">Get History</button>
+    </form>
+    
+    <div id="messageHistory"></div>
+
+    <script>
+        document.getElementById('sendMessageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/send-message', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                alert('Message sent successfully!');
+                document.getElementById('sendMessageForm').reset();
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                alert('Failed to send message');
+            });
+        });
+
+        document.getElementById('getMessageHistoryForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const sender = document.getElementById('historySender').value;
+            const receiver = document.getElementById('historyReceiver').value;
+            fetch(`/message-history?sender=${sender}&receiver=${receiver}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const messageHistoryDiv = document.getElementById('messageHistory');
+                messageHistoryDiv.innerHTML = '';
+                data.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.textContent = `${message.sender}: ${message.text}`;
+                    messageHistoryDiv.appendChild(messageElement);
+                });
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                alert('Failed to retrieve message history');
+            });
+        });
+    </script>
+</body>
+</html>
