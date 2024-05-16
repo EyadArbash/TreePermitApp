@@ -1,12 +1,11 @@
 package treePermit.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import treePermit.repository.AntragRepository;
 import java.util.List;
@@ -17,6 +16,8 @@ public class WebController {
 
 	@Autowired
 	private AntragRepository antragRepository;
+@Controller
+public class WebController {
 
 	@GetMapping("/")
 	public String login() {
@@ -42,6 +43,7 @@ public class WebController {
 		return "application_form";
 	}
 
+
 	@GetMapping("/dashboard_clerks")
 	public String dashboardClerks(Model model) {
 		try {
@@ -60,7 +62,6 @@ public class WebController {
 			return "error"; // Leite zu einer allgemeinen Fehlerseite um
 		}
 	}
-
 	@GetMapping("/detail_view_clerks")
 	public String detailViewClerks() {
 		return "detail_view_clerks";
@@ -79,6 +80,7 @@ public class WebController {
 		return "my-requests"; // Stelle sicher, dass "my-requests" dem Namen deiner HTML-Datei entspricht
 	}
 
+
 	@PostMapping("/submit-application")
 	public ModelAndView submitApplication(@RequestParam("vorname") String vorname,
 			@RequestParam("nachname") String nachname, @RequestParam("adresse") String adresse,
@@ -94,5 +96,6 @@ public class WebController {
 		// Weiterleitung auf die Seite "Meine Anträge"
 		return new ModelAndView("redirect:/my-requests");
 	}
+
 
 }

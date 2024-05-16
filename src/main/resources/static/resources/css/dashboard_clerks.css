@@ -6,42 +6,49 @@ body {
 }
 
 .uebersicht {
-	width: 80%;
-	margin: 50px auto;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	background: white;
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
 .uebersicht h2 {
-	text-align: center;
-	padding: 20px;
-	border-bottom: 1px solid #ddd;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.antrag {
-	padding: 20px;
-	border-bottom: 1px solid #ddd;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.requests {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e9e9f3;
+    border-left: 5px solid #5d87a1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
 }
 
-.antrag:last-child {
-	border-bottom: none;
+.requests div {
+    font-size: 16px;
+	font-weight: bold;
 }
 
 .button {
-	padding: 10px 25px;
-	border: none;
-	border-radius: 3px;
-	background-color: #4CAF50;
-	color: white;
-	cursor: pointer;
+    padding: 8px 16px;
+    background-color: #008cba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
 }
 
 .button:hover {
-	background-color: #45a049;
+    background-color: #007ba7;
 }
 
 .header-bar {
@@ -57,4 +64,21 @@ body {
 	right: 10px;
 	top: 5px;
 	color: white;
+	cursor: pointer;
 }
+
+.status-genehmigt {
+    color: green;
+}
+
+.status-abgelehnt {
+    color: red;
+}
+
+.status-offen {
+    color: blue;
+}
+.status-unbekannt {
+    color: gray;
+}
+
