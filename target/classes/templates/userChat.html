@@ -17,9 +17,18 @@
     </form>
 
 <script>
+	console.log('Fetching messages'); // Debugging
     const chatContainer = document.getElementById('chatContainer');
     const currentUser = document.getElementById('sender').value; // Den angemeldeten Benutzernamen aus dem versteckten Feld holen
-
+    
+    // Alle Nachrichten beim Laden der Seite abrufen und anzeigen
+    fetch('/messages')
+        .then(response => response.json())
+        .then(messages => {
+            messages.forEach(displayMessage);
+        })
+        .catch(error => console.error('Error:', error));
+    
     function displayMessage(message) {
         const messageElement = document.createElement('div');
         messageElement.textContent = `${message.sender}: ${message.text}`;
@@ -56,7 +65,6 @@
             this.reset(); // Formular zurücksetzen
         })
         .catch(error => console.error('Error:', error));
-        this.reset(); // Diese Zeile könnte entfernt werden, da sie bereits im .then-Block aufgerufen wird
     });
 </script>
 

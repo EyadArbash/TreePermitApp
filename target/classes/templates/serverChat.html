@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Chat</title>
+    <link rel="stylesheet" th:href="@{/resources/css/communication_interface.css}">
+</head>
+<body>
+    <div class="chat-container" id="chatContainer">
+        <!-- Chat messages will be displayed here -->
+    </div>
+    <form id="sendServerMessageForm">
+        <input type="text" id="serverText" name="text" placeholder="Type your server message..." required>
+        <button type="submit">Send</button>
+        <input type="hidden" id="receiver" name="receiver" />
+    </form>
+
+<script>
+    const chatContainer = document.getElementById('chatContainer');
+    
+    
+    
+    // Alle Nachrichten beim Laden der Seite abrufen und anzeigen
+    fetch('/allMessages')
+        .then(response => response.json())
+        .then(messages => {
+            console.log(messages); // Debug-Ausgabe
+            messages.forEach(displayMessage);
+        })
+        .catch(error => console.error('Error:', error));
+    
+    function displayMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${message.sender}: ${message.text}`;
+        messageElement.classList.add('message');
+        if (message.sender !== 'Server') {
+            messageElement.classList.add('receiver');
+        }
+        chatContainer.appendChild(messageElement);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+
+    document.getElementById('sendServerMessageForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const newMessage = {
+            sender: 'Server',
+            receiver: document.getElementById('receiver').value,
+            text: formData.get('text')
+        };
+
+        console.log(newMessage); // Debug-Ausgabe
+
+        fetch('/sendServerMessage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newMessage)
+        })
+        .then(response => response.json())
+        .then(sentMessage => {
+            displayMessage(sentMessage);
+            this.reset();
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    chatContainer.addEventListener('click', function(event) {
+        if (event.target.classList.contains('receiver')) {
+            document.getElementById('receiver').value = event.target.textContent.split(':')[0];
+        }
+    });
+</script>
+
+</body>
+</html>
