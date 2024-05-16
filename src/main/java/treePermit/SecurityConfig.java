@@ -51,9 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
             .antMatchers("/dashboard_applicant", "/application_form", "/messages","/dashboard_clerks").hasRole("USER")
 
-            .antMatchers("/dashboard_user", "/application_form", "/communication_interface").hasRole("USER")
+            .antMatchers("/dashboard_user", "/application_form", "/communication_interface","/userChat").hasRole("USER")
 
-            .antMatchers("/dashboard_clerks").hasRole("CLERK")
+            .antMatchers("/dashboard_clerks","/serverChat").hasRole("CLERK")
             .and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")

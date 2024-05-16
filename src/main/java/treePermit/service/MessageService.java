@@ -19,4 +19,13 @@ public class MessageService {
     public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
+    
+    public List<Message> getMessagesForReceiver(String receiver) {
+        return messageRepository.findByReceiver(receiver);
+    }
+
+    public List<Message> getMessagesForClient(String client) {
+        return messageRepository.findBySenderOrReceiver(client, "Server");
+    }
+    
 }
