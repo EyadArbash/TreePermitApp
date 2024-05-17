@@ -1,8 +1,9 @@
 package treePermit.service;
-import treePermit.repository.MessageRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import treePermit.model.Message;
+import treePermit.repository.MessageRepository;
 
 import java.util.List;
 
@@ -16,16 +17,8 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-    public List<Message> getAllMessages() {
-        return messageRepository.findAll();
+    public List<Message> getMessagesBetweenServerAndClient(String clientEmail) {
+        String serverEmail = "clerk@example.com";
+        return messageRepository.findMessagesBetween(clientEmail, serverEmail);
     }
-    
-    public List<Message> getMessagesForReceiver(String receiver) {
-        return messageRepository.findByReceiver(receiver);
-    }
-
-    public List<Message> getMessagesForClient(String client) {
-        return messageRepository.findBySenderOrReceiver(client, "Server");
-    }
-    
 }
