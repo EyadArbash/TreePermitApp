@@ -18,7 +18,7 @@ public class MessageService {
     }
 
     public List<Message> getMessagesBetweenServerAndClient(String clientEmail) {
-        String serverEmail = "clerk@example.com";
-        return messageRepository.findMessagesBetween(clientEmail, serverEmail);
+        String serverUsername = "clerk";
+        return messageRepository.findMessagesBetween(clientEmail, serverUsername);
     }
 }

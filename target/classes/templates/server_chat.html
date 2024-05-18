@@ -11,10 +11,10 @@
     <div class="chat-container" id="chatContainer">
         <!-- Chat messages will be displayed here -->
     </div>
-    <form id="sendServerMessageForm">
+    <form id="sendServerMessage">
         <input type="text" id="serverText" name="text" placeholder="Type your message..." required>
         <button type="submit">Send</button>
-        <input type="hidden" id="receiver" name="receiver" />
+        <input type="hidden" id="sender" name="sender" th:value="${#httpServletRequest.remoteUser}" /> <!-- Angemeldeten Benutzer als verstecktes Feld hinzugefügt -->
     </form>
 </body>
 </html>
