@@ -62,10 +62,7 @@ public class MessageController {
     public List<Message> getMessagesForClient(HttpServletRequest request) {
         String currentUser = request.getRemoteUser();
         String clientUserName = userService.getUserNameByEmail(currentUser);
-        String serverUsername = "clerk";
         List<Message> messages = messageService.getMessagesBetweenServerAndClient(clientUserName);
-        if (messages.isEmpty())
-            System.out.println("No messages found between " + clientUserName + " and " + serverUsername);
         return messages;
     }
 
@@ -73,12 +70,8 @@ public class MessageController {
     @ResponseBody
     public List<Message> getMessagesForServer(HttpServletRequest request,@RequestParam Long requestId) {
         Request myrequest = requestRepository.findById(requestId).orElseThrow(() -> new IllegalArgumentException("Invalid request ID"));
-        String currentUser = request.getRemoteUser();
-        String serverUsername = userService.getUserNameByEmail(currentUser);
         String clientUserName = myrequest.getUser().getUsername();
         List<Message> messages = messageService.getMessagesBetweenServerAndClient(clientUserName);
-        if (messages.isEmpty())
-            System.out.println("No messages found between " + clientUserName + " and " + serverUsername);
         return messages;
     }
 

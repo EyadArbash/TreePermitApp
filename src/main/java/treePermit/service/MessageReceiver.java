@@ -10,6 +10,5 @@ public class MessageReceiver {
 	
     @JmsListener(destination = "TreePermit")
     public void receiveMessage(Message message) {
-        System.out.println("Received message: " + message);
     }
 }
