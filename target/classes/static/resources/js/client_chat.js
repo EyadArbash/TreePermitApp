@@ -2,40 +2,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const chatContainer = document.getElementById('chatContainer');
     const currentUser = document.getElementById('sender').value;
     
-// Funktion zum Abrufen von URL-Parametern
-function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    const results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}
-// Hole die Anfrage-ID aus der URL
-const requestId = getUrlParameter('requestId');
-console.log('Request ID: ' + requestId); // Debug-Ausgabe
-
-function displayMessage(message) {
-    const messageElement = document.createElement('div');
-    messageElement.textContent = `${message.sender}: ${message.text}`;
-    messageElement.classList.add('message');
-    if (message.sender === currentUser) {
-        messageElement.classList.add('sender');
-    } else {
-        messageElement.classList.add('receiver');
+    // Funktion zum Abrufen von URL-Parametern
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
-    chatContainer.appendChild(messageElement);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-}
 
-// Abrufen der Nachrichten zwischen dem Server und dem Client
-    fetch(`/clientMessages?requestId=${requestId}`)
-        .then(response => response.json())
-        .then(messages => {
-            if (messages.length === 0) {
-                console.log("No messages found");
-            }
-            messages.forEach(displayMessage);
-        })
-        .catch(error => console.error('Error fetching messages:', error));
+    // Hole die Anfrage-ID aus der URL
+    const requestId = getUrlParameter('requestId');
+
+    function displayMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${message.sender}: ${message.text}`;
+        messageElement.classList.add('message');
+
+        if (message.sender !== 'clerk') {
+            messageElement.classList.add('sender');
+        } else {
+            messageElement.classList.add('receiver');
+        }
+
+        chatContainer.appendChild(messageElement);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function fetchMessages() {
+        fetch(`/clientMessages?requestId=${requestId}`)
+            .then(response => response.json())
+            .then(messages => {
+                chatContainer.innerHTML = '';
+                messages.forEach(displayMessage);
+            })
+            .catch(error => console.error('Error fetching messages:', error));
+    }
+
+    // Initiales Abrufen der Nachrichten
+    fetchMessages();
+
+    // Nachrichten alle 500ms abrufen
+    setInterval(fetchMessages, 500);
 
     document.getElementById('sendClientMessage').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -59,6 +66,4 @@ function displayMessage(message) {
         })
         .catch(error => console.error('Error sending message:', error));
     });
-
-
 });

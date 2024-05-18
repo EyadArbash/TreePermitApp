@@ -7,45 +7,45 @@
 </head>
 <body>
     <div class="header-bar">
-			<form action="/logout" method="post">
-				<button type="submit" class="logout-button">Logout</button>
-			</form>
-		</div>
-        
+        <form action="/logout" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+    
     <div class="container">
         <h1>Antragsdetails</h1>
-        <div th:each="req, iterStat  : ${requests}" class="card">
-        	<button class="collapsible">Antrag #<span th:text="${iterStat.count}">1</span>: <span th:class="${req.status != null ? 'status-' + req.status.toString().toLowerCase() : 'status-unbekannt'}" th:text="' - ' + (${req.status != null} ? ${req.status} : 'UNBEKANNT')"></span></button>
-        	<button class="button" th:onclick="'window.location.href=\'/client_chat?requestId=' + ${req.id} + '\''">KONTAKTIEREN</button>
-        	<div class="content">
-	        	<div class="fontColor">Angaben zur Antragstellende Person</div>
-		        <div class="detail">Familienname: <span th:text="${req.familienname}">Familienname</span></div>
-		        <div class="detail">Vornamen: <span th:text="${req.vornamen}">Vornamen</span></div>
-		        <div class="detail">Straße: <span th:text="${req.strasse}">Straße</span></div>
-		        <div class="detail">Hausnummer: <span th:text="${req.hausnummer}">Hausnummer</span></div>
-		        <div class="detail">PLZ: <span th:text="${req.plz}">PLZ</span></div>
-		        <div class="detail">Ort: <span th:text="${req.ort}">Ort</span></div>
-		        <div class="fontColor">Kommunikation</div>
-		        <div class="detail">Telefon: <span th:text="${req.telefon}">Telefonnummer</span></div>
-		        <div class="detail">E-Mail: <span th:text="${req.email}">E-Mail</span></div>
-		        <div class="fontColor">Angaben zum geplanten Vorhaben</div>
-		        <div class="detail">Art des Gewächses: <span th:text="${req.artGewaechs}">Art des Gewächses</span></div>
-		        <div class="detail">Steht der Baum außerhalb eines Waldes?: <span th:text="${req.baumAusserhalbWald ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
-		        <div class="detail">Steht der Baum außerhalb einer Kurzumtriebsplantage?: <span th:text="${req.baumAusserhalbKurzumtriebsplantage ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
-		        <div class="detail">Steht der Baum außerhalb einer gärtnerisch genutzten Fläche?: <span th:text="${req.baumAusserhalbGaertnerischGenutzteFlaeche ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
-		        <div class="detail">Straße Standort: <span th:text="${req.strasseStandort}">Straße Standort</span></div>
-		        <div class="detail">Hausnummer Standort: <span th:text="${req.hausnummerStandort}">Hausnummer Standort</span></div>
-		        <div class="detail">PLZ Standort: <span th:text="${req.plzStandort}">PLZ Standort</span></div>
-		        <div class="detail">Ort Standort: <span th:text="${req.ortStandort}">Ort Standort</span></div>
-		        <div class="detail">Startdatum des Vorhabens: <span th:text="${req.startdatumVorhaben}">Startdatum</span></div>
-		        <div class="detail">Enddatum des Vorhabens: <span th:text="${req.enddatumVorhaben}">Enddatum</span></div>
-		        <div class="detail">Beschreibung des Vorhabens: <span th:text="${req.beschreibungVorhaben}">Beschreibung</span></div>
-				<div th:class="${req.status != null ? 'notification-' + req.status.toString().toLowerCase() : 'notification-unbekannt'}"  th:text="${req.notification != null ? req.notification.message : 'Unbekannt'}">
-				<button class="button" th:onclick="'window.location.href=\'/client_chat?requestId=' + ${req.id} + '\''">KONTAKTIEREN</button>
-				</div>
-         	</div>
-         </div>
-         <button class="buttonAb" onclick="window.location.href='/dashboard_user';">Zurück</button>
+        <div th:each="req, iterStat : ${requests}" class="card">
+            <button class="collapsible">Antrag #<span th:text="${iterStat.count}">1</span>: <span th:class="${req.status != null ? 'status-' + req.status.toString().toLowerCase() : 'status-unbekannt'}" th:text="' - ' + (${req.status != null} ? ${req.status} : 'UNBEKANNT')"></span></button>
+            <div class="content">
+                <div class="fontColor">Angaben zur Antragstellende Person</div>
+                <div class="detail">Familienname: <span th:text="${req.familienname}">Familienname</span></div>
+                <div class="detail">Vornamen: <span th:text="${req.vornamen}">Vornamen</span></div>
+                <div class="detail">Straße: <span th:text="${req.strasse}">Straße</span></div>
+                <div class="detail">Hausnummer: <span th:text="${req.hausnummer}">Hausnummer</span></div>
+                <div class="detail">PLZ: <span th:text="${req.plz}">PLZ</span></div>
+                <div class="detail">Ort: <span th:text="${req.ort}">Ort</span></div>
+                <div class="fontColor">Kommunikation</div>
+                <div class="detail">Telefon: <span th:text="${req.telefon}">Telefonnummer</span></div>
+                <div class="detail">E-Mail: <span th:text="${req.email}">E-Mail</span></div>
+                <div class="fontColor">Angaben zum geplanten Vorhaben</div>
+                <div class="detail">Art des Gewächses: <span th:text="${req.artGewaechs}">Art des Gewächses</span></div>
+                <div class="detail">Steht der Baum außerhalb eines Waldes?: <span th:text="${req.baumAusserhalbWald ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
+                <div class="detail">Steht der Baum außerhalb einer Kurzumtriebsplantage?: <span th:text="${req.baumAusserhalbKurzumtriebsplantage ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
+                <div class="detail">Steht der Baum außerhalb einer gärtnerisch genutzten Fläche?: <span th:text="${req.baumAusserhalbGaertnerischGenutzteFlaeche ? 'Ja' : 'Nein'}">Ja oder Nein</span></div>
+                <div class="detail">Straße Standort: <span th:text="${req.strasseStandort}">Straße Standort</span></div>
+                <div class="detail">Hausnummer Standort: <span th:text="${req.hausnummerStandort}">Hausnummer Standort</span></div>
+                <div class="detail">PLZ Standort: <span th:text="${req.plzStandort}">PLZ Standort</span></div>
+                <div class="detail">Ort Standort: <span th:text="${req.ortStandort}">Ort Standort</span></div>
+                <div class="detail">Startdatum des Vorhabens: <span th:text="${req.startdatumVorhaben}">Startdatum</span></div>
+                <div class="detail">Enddatum des Vorhabens: <span th:text="${req.enddatumVorhaben}">Enddatum</span></div>
+                <div class="detail">Beschreibung des Vorhabens: <span th:text="${req.beschreibungVorhaben}">Beschreibung</span></div>
+                <div th:class="${req.status != null ? 'notification-' + req.status.toString().toLowerCase() : 'notification-unbekannt'}" th:text="${req.notification != null ? req.notification.message : 'Unbekannt'}"></div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="buttonAb" onclick="window.location.href='/dashboard_user';">Zurück</button>
+            <button class="buttonAb" th:if="${requests.size() > 0}" th:onclick="'window.location.href=\'/client_chat?requestId=' + ${requests[0].id} + '\''">KONTAKTIEREN</button>
+        </div>
     </div>
     <script th:src="@{/resources/js/my_requests.js}"></script>
 </body>

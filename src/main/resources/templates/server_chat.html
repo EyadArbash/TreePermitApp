@@ -15,6 +15,7 @@
         <input type="text" id="serverText" name="text" placeholder="Type your message..." required>
         <button type="submit">Send</button>
         <input type="hidden" id="sender" name="sender" th:value="${#httpServletRequest.remoteUser}" /> <!-- Angemeldeten Benutzer als verstecktes Feld hinzugefügt -->
+        <input type="hidden" id="receiver" name="receiver"/>
     </form>
 </body>
 </html>
