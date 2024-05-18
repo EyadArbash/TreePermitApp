@@ -15,6 +15,7 @@ import treePermit.model.Message;
 import treePermit.model.Request;
 import treePermit.service.MessageSender;
 import treePermit.service.MessageService;
+import treePermit.service.UserService;
 import treePermit.repository.RequestRepository;
 
 @Controller
@@ -28,46 +29,56 @@ public class MessageController {
 
     @Autowired
     private RequestRepository requestRepository;
-
-    @PostMapping("/send")
-    @ResponseBody
-    public Message sendMessage(@RequestBody Message message) {
-        message.setMessageDate(new Date());
-        message.setReceiver("clerk@example.com");
-        messageSender.sendMessage("TreePermit", message);
-        return messageService.saveMessage(message);
-    }
-
+    
+    @Autowired
+    private UserService userService;
+    
     @PostMapping("/sendServerMessage")
     @ResponseBody
-    public Message sendServerMessage(@RequestBody Message message, @RequestParam Long requestId) {
-        Request request = requestRepository.findById(requestId).orElseThrow(() -> new IllegalArgumentException("Invalid request ID"));
+    public Message sendServerMessage(HttpServletRequest request,@RequestBody Message message,@RequestParam Long requestId) {
+        Request myrequest = requestRepository.findById(requestId).orElseThrow(() -> new IllegalArgumentException("Invalid request ID"));
+        String currentUser = request.getRemoteUser();
+        String serverUserName = userService.getUserNameByEmail(currentUser);
         message.setMessageDate(new Date());
-        message.setSender("clerk@example.com");
-        message.setReceiver(request.getEmail());
+        message.setSender(serverUserName);
+        message.setReceiver(myrequest.getUser().getUsername());
         messageSender.sendMessage("TreePermit", message);
         return messageService.saveMessage(message);
     }
-
-    @GetMapping("/messages")
+    
+    @PostMapping("/sendClientMessage")
     @ResponseBody
-    public List<Message> getMessagesForCurrentUser(HttpServletRequest request) {
-        String currentUser = request.getRemoteUser();
-        if (currentUser == null) {
-            throw new IllegalStateException("Kein Benutzer ist angemeldet.");
-        }
-        return messageService.getMessagesBetweenServerAndClient(currentUser);
+    public Message sendClientMessage(@RequestBody Message message,@RequestParam Long requestId) {
+    	Request myrequest = requestRepository.findById(requestId).orElseThrow(() -> new IllegalArgumentException("Invalid request ID"));
+    	message.setSender(myrequest.getUser().getUsername());
+    	message.setMessageDate(new Date());
+        message.setReceiver("clerk");
+        messageSender.sendMessage("TreePermit", message);
+        return messageService.saveMessage(message);
     }
-
+    
     @GetMapping("/clientMessages")
     @ResponseBody
-    public List<Message> getMessagesForClient(@RequestParam Long requestId) {
-        Request request = requestRepository.findById(requestId).orElseThrow(() -> new IllegalArgumentException("Invalid request ID"));
-        String clientEmail = request.getEmail();
-        String serverEmail = "clerk@example.com";
-        List<Message> messages = messageService.getMessagesBetweenServerAndClient(clientEmail);
+    public List<Message> getMessagesForClient(HttpServletRequest request) {
+        String currentUser = request.getRemoteUser();
+        String clientUserName = userService.getUserNameByEmail(currentUser);
+        String serverUsername = "clerk";
+        List<Message> messages = messageService.getMessagesBetweenServerAndClient(clientUserName);
         if (messages.isEmpty())
-            System.out.println("No messages found between " + clientEmail + " and " + serverEmail);
+            System.out.println("No messages found between " + clientUserName + " and " + serverUsername);
+        return messages;
+    }
+
+    @GetMapping("/serverMessages")
+    @ResponseBody
+    public List<Message> getMessagesForServer(HttpServletRequest request,@RequestParam Long requestId) {
+        Request myrequest = requestRepository.findById(requestId).orElseThrow(() -> new IllegalArgumentException("Invalid request ID"));
+        String currentUser = request.getRemoteUser();
+        String serverUsername = userService.getUserNameByEmail(currentUser);
+        String clientUserName = myrequest.getUser().getUsername();
+        List<Message> messages = messageService.getMessagesBetweenServerAndClient(clientUserName);
+        if (messages.isEmpty())
+            System.out.println("No messages found between " + clientUserName + " and " + serverUsername);
         return messages;
     }
 

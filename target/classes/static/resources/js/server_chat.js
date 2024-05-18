@@ -1,4 +1,5 @@
 const chatContainer = document.getElementById('chatContainer');
+const currentUser = document.getElementById('sender').value;
 
 // Funktion zum Abrufen von URL-Parametern
 function getUrlParameter(name) {
@@ -16,7 +17,7 @@ function displayMessage(message) {
     const messageElement = document.createElement('div');
     messageElement.textContent = `${message.sender}: ${message.text}`;
     messageElement.classList.add('message');
-    if (message.sender !== 'clerk@example.com') {
+    if (message.sender !== currentUser) {
         messageElement.classList.add('receiver');
     } else {
         messageElement.classList.add('sender'); // Nachrichten des Servers markieren
@@ -26,7 +27,7 @@ function displayMessage(message) {
 }
 
 // Abrufen der Nachrichten zwischen dem Server und dem Client
-fetch(`/clientMessages?requestId=${requestId}`)
+fetch(`/serverMessages?requestId=${requestId}`)
     .then(response => response.json())
     .then(messages => {
         console.log(messages); // Debug-Ausgabe
@@ -37,11 +38,11 @@ fetch(`/clientMessages?requestId=${requestId}`)
     })
     .catch(error => console.error('Error fetching messages:', error));
 
-document.getElementById('sendServerMessageForm').addEventListener('submit', function(event) {
+document.getElementById('sendServerMessage').addEventListener('submit', function(event) {
     event.preventDefault();
     const formData = new FormData(this);
     const newMessage = {
-        sender: 'clerk@example.com',
+        sender: currentUser,
         text: formData.get('text')
     };
 
