@@ -55,6 +55,13 @@ body {
 	background-color: cadetblue;
 	height: 40px;
 }
+.requests.accepted {
+    background-color: lightgreen;
+}
+
+.requests.rejected {
+    background-color: lightcoral;
+}
 
 .logout-button {
 	width: 65px;

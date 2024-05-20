@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
-<meta charset="UTF-8">
-<title>Sachbearbeiter-Übersicht</title>
-<link rel="stylesheet" th:href="@{/resources/css/dashboard_clerks.css}">
+    <meta charset="UTF-8">
+    <title>Sachbearbeiter-Übersicht</title>
+    <link rel="stylesheet" th:href="@{/resources/css/dashboard_clerks.css}">
+    <style>
+        /* Stil für akzeptierte Anträge */
+        .accepted {
+            background-color: #dff0d8; /* Hintergrundfarbe für akzeptierte Anträge */
+            border-left-color: #3c763d; /* Randfarbe für akzeptierte Anträge */
+        }
+        
+        /* Stil für abgelehnte Anträge */
+        .rejected {
+            background-color: #f2dede; /* Hintergrundfarbe für abgelehnte Anträge */
+            border-left-color: #a94442; /* Randfarbe für abgelehnte Anträge */
+        }
+    </style>
 </head>
 <body>
-	<div class="header-bar">
-		<form action="/logout" method="post">
-			<button type="submit" class="logout-button">Logout</button>
-		</form>
-	</div>
-	<div class="uebersicht">
-		<h2>Sachbearbeiter-Übersicht</h2>
-		<div class="antrag">
-			<div>Antrag #1</div>
-			<button class="button" onclick="window.location.href='/antrag/1';">ANTRAG
-				ANSEHEN</button>
-		</div>
-		<div class="antrag">
-			<div>Antrag #2</div>
-			<button class="button" onclick="window.location.href='/antrag/2';">ANTRAG
-				ANSEHEN</button>
-		</div>
-	</div>
-
     <div class="header-bar">
         <form action="/logout" method="post">
             <button type="submit" class="logout-button">Logout</button>
@@ -33,8 +26,19 @@
     </div>
     <div class="uebersicht">
         <h2>Sachbearbeiter-Übersicht</h2>
-        <div class="antrag" th:each="antrag : ${antraege}">
-            <div th:text="'Antrag #' + ${antrag.nummer}"></div>
+		<div th:each="request : ${allRequests}" class="requests" th:class="${request.status}">
+            <div th:text="'Antrag #' + ${request.id}">Antrag #1</div>
+            <button class="button" th:onclick="'window.location.href=\'/request/' + ${request.id} + '\''">ANTRAG ANSEHEN</button>
+            <!-- Check if request has been accepted -->
+            <div th:if="${request.accepted}">
+                <p style="color: green;">Antrag wurde angenommen</p>
+                <img src="green_check_icon.png" alt="Accepted" />
+            </div>
+            <!-- Check if request has been rejected -->
+            <div th:if="${request.rejected}">
+                <p style="color: red;">Antrag wurde abgelehnt</p>
+                <img src="red_x_icon.png" alt="Rejected" />
+            </div>
         </div>
     </div>
 </body>
