@@ -50,7 +50,6 @@
     color: #ffffff;
 }
 
-
 .close-button {
     color: #aaa;
     float: right;
@@ -65,12 +64,22 @@
     cursor: pointer;
 }
 
+.badge {
+    background-color: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: 252px;
+    right: 1209px;
+}
+
 #sendServerMessage {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 
 #sendServerMessage input[type="text"] {
     width: 70%;
@@ -93,13 +102,11 @@
     background-color: #218838;
 }
 
-
 #sendClientMessage {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 
 #sendClientMessage input[type="text"] {
     width: 70%;
