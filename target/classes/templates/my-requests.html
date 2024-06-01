@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Mein Antrag</title>
     <link rel="stylesheet" th:href="@{/resources/css/my_requests.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/communication_interface.css}">
+    <script th:src="@{/resources/js/client_chat_popup.js}" defer></script>
 </head>
 <body>
     <div class="header-bar">
@@ -44,9 +46,26 @@
         </div>
         <div class="button-container">
             <button class="buttonAb" onclick="window.location.href='/dashboard_user';">Zurück</button>
-            <button class="buttonAb" th:if="${requests.size() > 0}" th:onclick="'window.location.href=\'/client_chat?requestId=' + ${requests[0].id} + '\''">KONTAKTIEREN</button>
+            <button class="buttonAb" th:if="${requests.size() > 0}" th:onclick="'openChatPopup(' + ${requests[0].id} + ')'">KONTAKTIEREN</button>
         </div>
     </div>
+
+    <!-- Modal for Chat -->
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-popup-content">
+            <span class="close-button" onclick="closeChatPopup()">&times;</span>
+            <div class="chat-container" id="chatContainer">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <form id="sendClientMessage">
+                <input type="text" id="clientText" name="text" placeholder="Type your message..." required>
+                <button type="submit">Send</button>
+                <input type="hidden" id="sender" name="sender" th:value="${#httpServletRequest.remoteUser}" />
+                <input type="hidden" id="receiver" name="receiver"/>
+            </form>
+        </div>
+    </div>
+
     <script th:src="@{/resources/js/my_requests.js}"></script>
 </body>
 </html>
