@@ -1,0 +1,87 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+.uebersicht {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.uebersicht h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.requests {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e9e9f3;
+    border-left: 5px solid #5d87a1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.requests div {
+    font-size: 16px;
+	font-weight: bold;
+}
+
+.button {
+    padding: 8px 16px;
+    background-color: #008cba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #007ba7;
+}
+
+.header-bar {
+	background-color: cadetblue;
+	height: 40px;
+}
+
+.logout-button {
+	width: 65px;
+	height: 30px;
+	background-color: red;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	color: white;
+	cursor: pointer;
+}
+
+.status-genehmigt {
+    color: green;
+}
+
+.status-abgelehnt {
+    color: red;
+}
+
+.status-offen {
+    color: blue;
+}
+.status-unbekannt {
+    color: gray;
+}
+
+
+
+

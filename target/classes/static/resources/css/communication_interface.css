@@ -1,0 +1,130 @@
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+.chat-popup-content {
+    width: 630px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.sender {
+    background-color: #007bff;
+    align-self: flex-end;
+    color: #ffffff;
+}
+
+.receiver {
+    background-color: #6c757d;
+    align-self: flex-start;
+    color: #ffffff;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.badge {
+    background-color: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: 252px;
+    right: 1209px;
+}
+
+#sendServerMessage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#sendServerMessage input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#sendServerMessage button {
+    width: 25%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sendServerMessage button:hover {
+    background-color: #218838;
+}
+
+#sendClientMessage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#sendClientMessage input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#sendClientMessage button {
+    width: 25%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sendClientMessage button:hover {
+    background-color: #218838;
+}
