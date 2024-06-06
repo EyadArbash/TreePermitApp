@@ -34,6 +34,7 @@ h1 {
 	text-align: left;
 	outline: none;
 	font-size: 15px;
+	font-weight: bold;
 	margin-bottom: 5px;
 	transition: background-color 0.2s ease;
 }
@@ -99,4 +100,36 @@ h1 {
 	top: 5px;
 	color: white;
 	cursor: pointer;
+}
+
+.notification-genehmigt {
+    padding: 10px;
+    margin: 10px 0;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+
+.notification-abgelehnt {
+    padding: 10px;
+    margin: 10px 0;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.status-genehmigt {
+    color: green;
+}
+
+.status-abgelehnt {
+    color: red;
+}
+
+.status-offen {
+    color: blue;
+}
+.status-unbekannt {
+    color: gray;
 }

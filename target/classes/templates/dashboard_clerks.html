@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Sachbearbeiter-Übersicht</title>
     <link rel="stylesheet" th:href="@{/resources/css/dashboard_clerks.css}">
+<<<<<<< HEAD
     <style>
         /* Stil für akzeptierte Anträge */
         .accepted {
@@ -17,6 +18,8 @@
             border-left-color: #a94442; /* Randfarbe für abgelehnte Anträge */
         }
     </style>
+=======
+>>>>>>> 819ac8baef1449c2e4727817f3467e5676af8cc6
 </head>
 <body>
     <div class="header-bar">
@@ -26,6 +29,7 @@
     </div>
     <div class="uebersicht">
         <h2>Sachbearbeiter-Übersicht</h2>
+<<<<<<< HEAD
 		<div th:each="request : ${allRequests}" class="requests" th:class="${request.status}">
             <div th:text="'Antrag #' + ${request.id}">Antrag #1</div>
             <button class="button" th:onclick="'window.location.href=\'/request/' + ${request.id} + '\''">ANTRAG ANSEHEN</button>
@@ -39,6 +43,15 @@
                 <p style="color: red;">Antrag wurde abgelehnt</p>
                 <img src="red_x_icon.png" alt="Rejected" />
             </div>
+=======
+        <div th:each="request : ${allRequests}" class="requests">
+            <div th:class="${request.status != null ? 'status-' + request.status.toString().toLowerCase() : 'status-unbekannt'}">
+                <span th:text="'Antrag #' + ${request.id}"></span>
+                <span th:text="' - ' + (${request.status != null} ? ${request.status} : 'UNBEKANNT')"></span>
+            </div>
+            <button class="button" th:onclick="'window.location.href=\'/request/' + ${request.id} + '\''">ANTRAG ANSEHEN</button>
+            <button class="button" th:onclick="'window.location.href=\'/server_chat?requestId=' + ${request.id} + '\''">KONTAKTIEREN</button>
+>>>>>>> 819ac8baef1449c2e4727817f3467e5676af8cc6
         </div>
     </div>
 </body>

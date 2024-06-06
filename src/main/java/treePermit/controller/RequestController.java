@@ -4,7 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import treePermit.enums.RequestStatus;
+
 import treePermit.model.Request;
 import treePermit.model.RequestCheck;
 import treePermit.model.User;
@@ -16,6 +26,12 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+
+
 
 @Controller
 public class RequestController {
@@ -72,9 +88,20 @@ public class RequestController {
         return "request_details";
     }
 
+
     @PostMapping("/process_request")
     public String processRequest(@ModelAttribute RequestCheck requestCheck, Model model) {
         requestCheckRepository.save(requestCheck);
+        org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) authentication
+				.getPrincipal();
+		User currentUser = userRepository.findByEmail(springUser.getUsername());
+		if (currentUser == null) {
+			throw new IllegalStateException("Benutzerdaten konnten nicht geladen werden.");
+		}
+		newRequest.setUser(currentUser);
+		newRequest.setStatus(RequestStatus.OFFEN);
+		requestRepository.save(newRequest);
+
 
         if (!requestCheck.isVollstaendigkeit() || !requestCheck.isZustaendigkeit() || !requestCheck.isVorhabenUmgesetzt() || !requestCheck.isVoraussetzungenErfuellt()) {
             model.addAttribute("message", "Der Antrag wurde abgelehnt.");

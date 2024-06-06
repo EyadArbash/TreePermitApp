@@ -1,7 +1,23 @@
 package treePermit.model;
 
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import treePermit.enums.RequestStatus;
+import java.time.LocalDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 
 @Entity
 @Table(name = "request")
@@ -71,14 +87,20 @@ public class Request {
 
     @Column(name = "beschreibung_vorhaben")
     private String beschreibungVorhaben;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private RequestStatus status = RequestStatus.OFFEN;;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Notification notification;
 
     @Column(name = "accepted")
     private Boolean accepted;
 
     @Column(name = "rejected")
     private Boolean rejected;
-    @Column(name = "status")
-    private String status;
+  
     public Request() {}
 
     // Getter und Setter
@@ -102,13 +124,7 @@ public class Request {
     public String getFamilienname() {
         return familienname;
     }
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
     public void setFamilienname(String familienname) {
         this.familienname = familienname;
     }
@@ -272,4 +288,22 @@ public class Request {
     public void setRejected(Boolean rejected) {
         this.rejected = rejected;
     }
+
+	public RequestStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RequestStatus status) {
+		this.status = status;
+	}
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+    
+
 }
