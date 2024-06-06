@@ -1,105 +1,105 @@
 body {
-	font-family: Arial, sans-serif;
-	margin: 0px;
-	background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    background-color: #f4f4f9;
 }
 
 .container {
-	max-width: 1000px;
-	margin: auto;
-	padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
 }
 
 h1 {
-	color: #333;
-	text-align: center;
-	margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .card {
-	background: white;
-	margin-bottom: 20px;
-	padding: 15px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
+    background: white;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .collapsible {
-	background-color: #777;
-	color: white;
-	cursor: pointer;
-	padding: 18px;
-	width: 100%;
-	border: none;
-	text-align: left;
-	outline: none;
-	font-size: 15px;
-	font-weight: bold;
-	margin-bottom: 5px;
-	transition: background-color 0.2s ease;
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    transition: background-color 0.2s ease;
 }
 
 .active, .collapsible:hover {
-	background-color: #555;
+    background-color: #555;
 }
 
 .content {
-	padding: 0 18px;
-	display: none;
-	overflow: hidden;
-	background-color: #f9f9f9;
-	border-left: 5px solid #5d87a1;
-	transition: max-height 0.2s ease-out;
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border-left: 5px solid #5d87a1;
+    transition: max-height 0.2s ease-out;
 }
 
 .detail {
-	margin: 5px 0;
-	padding: 10px;
-	background: #e9e9e9;
-	border-left: 5px solid #5d87a1;
+    margin: 5px 0;
+    padding: 10px;
+    background: #e9e9e9;
+    border-left: 5px solid #5d87a1;
 }
 
 .detail span {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .buttonAb {
-	background-color: #008cba; /* Green */
-	border: none;
-	color: white;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
-	border-radius: 5px;
+    background-color: #008cba; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .buttonAb:hover {
-	background-color: #007ba7;
+    background-color: #007ba7;
 }
 
 .fontColor {
-	font-weight: bold;
-	color: cadetblue;
+    font-weight: bold;
+    color: cadetblue;
 }
 
 .header-bar {
-	background-color: cadetblue;
-	height: 40px;
+    background-color: cadetblue;
+    height: 40px;
 }
 
 .logout-button {
-	width: 65px;
-	height: 30px;
-	background-color: red;
-	position: absolute;
-	right: 10px;
-	top: 5px;
-	color: white;
-	cursor: pointer;
+    width: 65px;
+    height: 30px;
+    background-color: red;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: white;
+    cursor: pointer;
 }
 
 .notification-genehmigt {
@@ -118,7 +118,6 @@ h1 {
     font-weight: bold;
 }
 
-
 .status-genehmigt {
     color: green;
 }
@@ -132,4 +131,15 @@ h1 {
 }
 .status-unbekannt {
     color: gray;
+}
+
+.badge {
+    background-color: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }

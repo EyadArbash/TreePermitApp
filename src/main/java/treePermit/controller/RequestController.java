@@ -45,40 +45,6 @@ public class RequestController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/accept-request/{id}")
-    public String acceptRequest(@PathVariable Long id) {
-        Request request = requestRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Antrag nicht gefunden"));
-        request.setAccepted(true); // Setzen Sie den Wert auf true
-        request.setRejected(false); // Stellen Sie sicher, dass der Wert auf false gesetzt wird
-        requestRepository.save(request);
-        return "redirect:/dashboard_clerks";
-    }
-
-    @PostMapping("/reject-request/{id}")
-    public String rejectRequest(@PathVariable Long id) {
-        Request request = requestRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Antrag nicht gefunden"));
-        request.setAccepted(false); // Setzen Sie den Wert auf false
-        request.setRejected(true); // Setzen Sie den Wert auf true
-        requestRepository.save(request);
-        return "redirect:/dashboard_clerks";
-    }
-
-    @GetMapping("/dashboard_clerks")
-    public String getSachbearbeiterUebersicht(Model model) {
-        List<Request> allRequests = requestRepository.findAll();
-        for (Request request : allRequests) {
-            if (request.getAccepted() != null && request.getAccepted()) {
-                request.setStatus("accepted");
-            } else if (request.getRejected() != null && request.getRejected()) {
-                request.setStatus("rejected");
-            }
-        }
-        model.addAttribute("allRequests", allRequests);
-        return "dashboard_clerks";
-    }
-
 
 
     @GetMapping("/request/{id}")
@@ -89,28 +55,7 @@ public class RequestController {
     }
 
 
-    @PostMapping("/process_request")
-    public String processRequest(@ModelAttribute RequestCheck requestCheck, Model model) {
-        requestCheckRepository.save(requestCheck);
-        org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) authentication
-				.getPrincipal();
-		User currentUser = userRepository.findByEmail(springUser.getUsername());
-		if (currentUser == null) {
-			throw new IllegalStateException("Benutzerdaten konnten nicht geladen werden.");
-		}
-		newRequest.setUser(currentUser);
-		newRequest.setStatus(RequestStatus.OFFEN);
-		requestRepository.save(newRequest);
 
-
-        if (!requestCheck.isVollstaendigkeit() || !requestCheck.isZustaendigkeit() || !requestCheck.isVorhabenUmgesetzt() || !requestCheck.isVoraussetzungenErfuellt()) {
-            model.addAttribute("message", "Der Antrag wurde abgelehnt.");
-            return "request_status";
-        }
-
-        model.addAttribute("message", "Der Antrag wurde erfolgreich angenommen.");
-        return "request_status";
-    }
 
     @PostMapping("/submit-application")
     public String submitApplication(Principal principal,

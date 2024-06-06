@@ -1,126 +1,130 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
 }
 
-.chat-interface {
-    width: 600px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.chat-popup-content {
+    width: 630px;
+    background-color: white;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    left: 36%;
-    top: 150px;
-}
-
-.message-window {
-    width: 95%;
-    height: 300px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-    overflow-y: auto;
-    background-color: #e0e0e0;
-}
-
-.input-group {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    margin-bottom: 10px;
-}
-
-.input-group input[type=text] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 10px;
-}
-
-.input-group button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-.input-group button:hover {
-    background-color: #45a049;
-}
-
-.header-bar {
-    background-color: cadetblue;
-    height: 40px;
-}
-
-.logout-button {
-    width: 65px;
-    height: 30px;
-    background-color: red;
-    position: absolute;
-    right: 10px;
-    top: 5px;
-    color: white;
-    cursor: pointer;
+    flex-direction: column;
 }
 
 .chat-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 400px;
     display: flex;
     flex-direction: column;
-    height: 80vh;
-    overflow-y: scroll;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
 }
 
 .message {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 5px;
     max-width: 70%;
     word-wrap: break-word;
+    color: #ffffff;
+    font-size: 14px;
 }
 
 .sender {
-    background-color: #DCF8C6;
-    align-self: flex-start;
+    background-color: #007bff;
+    align-self: flex-end;
+    color: #ffffff;
 }
 
 .receiver {
-    background-color: #E5E5EA;
-    align-self: flex-end;
+    background-color: #6c757d;
+    align-self: flex-start;
+    color: #ffffff;
 }
 
-form {
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.badge {
+    background-color: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: 252px;
+    right: 1209px;
+}
+
+#sendServerMessage {
     display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-input[type="text"] {
+#sendServerMessage input[type="text"] {
+    width: 70%;
     padding: 10px;
-    margin: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
+#sendServerMessage button {
+    width: 25%;
     padding: 10px;
-    margin: 5px;
+    background-color: #28a745;
+    color: white;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049;
+#sendServerMessage button:hover {
+    background-color: #218838;
+}
+
+#sendClientMessage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#sendClientMessage input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#sendClientMessage button {
+    width: 25%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sendClientMessage button:hover {
+    background-color: #218838;
 }

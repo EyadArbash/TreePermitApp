@@ -1,24 +1,24 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const chatContainer = document.getElementById('chatContainer');
-    const currentUser = document.getElementById('sender').value;
-    
-    // Funktion zum Abrufen von URL-Parametern
-    function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        const results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    const senderInput = document.getElementById('sender');
+    const sendServerMessageForm = document.getElementById('sendServerMessage');
+
+    function openChatPopup(requestId) {
+        document.getElementById('chatPopup').style.display = 'block';
+        document.getElementById('receiver').value = requestId;
+        fetchMessages(requestId); // Fetch messages for the specific request ID
     }
 
-    // Hole die Anfrage-ID aus der URL
-    const requestId = getUrlParameter('requestId');
+    function closeChatPopup() {
+        document.getElementById('chatPopup').style.display = 'none';
+    }
 
     function displayMessage(message) {
         const messageElement = document.createElement('div');
         messageElement.textContent = `${message.sender}: ${message.text}`;
         messageElement.classList.add('message');
 
-        if (message.sender !== 'clerk') {
+        if (message.sender === 'clerk') {
             messageElement.classList.add('sender');
         } else {
             messageElement.classList.add('receiver');
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function fetchMessages() {
-        fetch(`/clientMessages?requestId=${requestId}`)
+    function fetchMessages(requestId) {
+        fetch(`/serverMessages?requestId=${requestId}`)
             .then(response => response.json())
             .then(messages => {
                 chatContainer.innerHTML = '';
@@ -38,21 +38,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .catch(error => console.error('Error fetching messages:', error));
     }
 
-    // Initiales Abrufen der Nachrichten
-    fetchMessages();
-
-    // Nachrichten alle 500ms abrufen
-    setInterval(fetchMessages, 500);
-
-    document.getElementById('sendClientMessage').addEventListener('submit', function(event) {
+    sendServerMessageForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const formData = new FormData(this);
         const newMessage = {
-            sender: currentUser,
+            sender: senderInput.value,
             text: formData.get('text')
         };
 
-        fetch(`/sendClientMessage?requestId=${requestId}`, {
+        fetch(`/sendServerMessage?requestId=${document.getElementById('receiver').value}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,4 +60,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
         .catch(error => console.error('Error sending message:', error));
     });
+
+    setInterval(() => {
+        const receiver = document.getElementById('receiver').value;
+        if (receiver) {
+            fetchMessages(receiver);
+        }
+    }, 500);
+
+    window.openChatPopup = openChatPopup;
+    window.closeChatPopup = closeChatPopup;
 });
