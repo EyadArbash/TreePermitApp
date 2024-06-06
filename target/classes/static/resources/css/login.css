@@ -1,0 +1,76 @@
+/* Grundlegende Seitenstile */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Zentrierter Container für den Inhalt */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+}
+
+/* Überschrift-Stil */
+h2 {
+    color: #0056b3;
+    margin-bottom: 30px;
+}
+
+/* Formularstile */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gemeinsame Stile für alle Texteingaben */
+input[type="email"], input[type="password"], input[type="submit"], button {
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Stil für den Anmeldebutton */
+input[type="submit"] {
+    border-color: transparent;
+    background-color: #008cba; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #007ba7; 
+}
+
+/* Stil für den Registrieren-Button */
+button {
+    background-color: #f8f9fa; /* Helles Grau */
+    color: black;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e2e6ea; /* Dunkleres Grau */
+}
