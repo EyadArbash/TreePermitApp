@@ -1,62 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bdbd040-bda3-4e51-8ed8-2f706ba31cc3" name="Changes" comment="" />
+    <list default="true" id="64e1b690-faee-48cd-a146-7268c90de0c8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/treePermit/usermanagment/UserServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/treePermit/test/UserServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/controller/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/controller/RegistrationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/controller/RequestCheckController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/controller/RequestController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/controller/WebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/controller/WebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/enums/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/enums/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/model/RegistrationDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/model/RegistrationDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/model/Request.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/model/RequestCheck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/repository/RequestCheckRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/repository/RequestRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/service/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/treePermit/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/treePermit/test/UserServiceTest.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "pdanzma"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;pdanzma&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/EyadArbash/TreePermitApp.git",
-    "accountId": "9ff8f32f-d930-484d-b821-d61a1cd3a3a7"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EyadArbash/TreePermitApp.git&quot;,
+    &quot;accountId&quot;: &quot;9ff8f32f-d930-484d-b821-d61a1cd3a3a7&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
-  <component name="ProjectId" id="2gHUDIhLuVq8QZQmRNpsLTZD9z6" />
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2hPQ9PEZwruFMKsKiCX9tEHheYD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Application.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Philipp&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/conha/Documents/GitHub/SP2024-G5-Kleinreparaturen&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="TreePermitApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="TreePermitApp" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="TreePermit" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="treePermit.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4bdbd040-bda3-4e51-8ed8-2f706ba31cc3" name="Changes" comment="" />
-      <created>1715353877407</created>
+      <changelist id="64e1b690-faee-48cd-a146-7268c90de0c8" name="Changes" comment="" />
+      <created>1717493081495</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715353877407</updated>
-      <workItem from="1715353879547" duration="102000" />
+      <updated>1717493081495</updated>
+      <workItem from="1717493083001" duration="4173000" />
+      <workItem from="1717508111215" duration="4000" />
+      <workItem from="1717855377892" duration="13000" />
     </task>
     <servers />
   </component>

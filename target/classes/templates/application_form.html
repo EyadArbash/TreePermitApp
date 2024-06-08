@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Antrag auf Baumfällung</title>
+    <link rel="stylesheet" th:href="@{/resources/css/application_form.css}">
+</head>
+<body>
+
+	<div class="header-bar">
+		<form action="/logout" method="post">
+			<button type="submit" class="logout-button">Logout</button>
+		</form>
+	</div>
+    <div class="formular">
+        <h2>Antrag auf Baumfällung</h2>
+        <!-- Stellen Sie sicher, dass Sie die korrekte URL im action-Attribut angeben -->
+		<form action="/submit-application" method="post">
+           
+            <!-- Antragstellende Person - Natürliche Person -->
+            <div class="input-group">
+                <input type="text" id="familienname" name="familienname" placeholder="Familienname" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="vornamen" name="vornamen" placeholder="Vornamen" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="straße" name="straße" placeholder="Straße" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="hausnummer" name="hausnummer" placeholder="Hausnummer" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="plz" name="plz" placeholder="PLZ" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="ort" name="ort" placeholder="Ort" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" name="email" placeholder="E-Mail" required>
+            </div>
+
+            <!-- Angaben zum geplanten Vorhaben -->
+            <div class="input-group">
+                <input type="text" id="art_gewaechs" name="art_gewaechs" placeholder="Art des Gewächses" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="straße_standort" name="straße_standort" placeholder="Straße Standort" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="hausnummer_standort" name="hausnummer_standort" placeholder="Hausnummer Standort" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="plz_standort" name="plz_standort" placeholder="PLZ Standort" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="ort_standort" name="ort_standort" placeholder="Ort Standort" required>
+            </div>
+            <div class="input-group">
+                <input type="date" id="startdatum_vorhaben" name="startdatum_vorhaben" placeholder="Startdatum des Vorhabens" required>
+            </div>
+            <div class="input-group">
+                <input type="date" id="enddatum_vorhaben" name="enddatum_vorhaben" placeholder="Enddatum des Vorhabens" required>
+            </div>
+            <div class="input-group">
+                <textarea id="beschreibung_vorhaben" name="beschreibung_vorhaben" placeholder="Beschreibung des Vorhabens" required></textarea>
+            </div>
+            
+            <input type="submit" value="SENDEN" class="button">
+
+           
+
+            <button class="buttonAb" onclick="window.location.href='/dashboard_user';">ABBRECHEN</button>
+
+        </form>
+    </div>
+</body>
+</html>
