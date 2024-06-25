@@ -20,19 +20,16 @@ Diese Testdokumentation beschreibt die Tests für den Codeabschnitt, der die Reg
 |--------------|--------------------------------------------------|-----------|---------|
 | TC-001       | Überprüfung der Registrierung eines neuen Benutzers | Hoch      | Abgeschlossen   |
 | TC-002       | Überprüfung der `loadUserByUsername` Methode, wenn der Benutzer existiert | Mittel      | Abgeschlossen   |
-| TC-003       | Überprüfung der `loadUserByUsername` Methode, wenn der Benutzer nicht existiert | Hoch      | Offen   |
-| TC-004       | Überprüfung der `saveMessage` Methode in `MessageService` | Mittel      | Offen   |
-| TC-005       | Überprüfung der `getMessagesBetweenServerAndClient` Methode in `MessageService` | Mittel      | Offen   |
-| TC-006       | Überprüfung der Passwortverschlüsselung bei der Registrierung eines neuen Benutzers | Hoch      | Offen   |
-| TC-007       | Überprüfung der Passwortänderungsfunktionalität | Mittel      | Offen   |
-| TC-008       | Überprüfung der E-Mail-Validierung bei der Registrierung eines neuen Benutzers | Hoch      | Offen   |
-| TC-009       | Überprüfung der Benutzeranmeldung mit korrekten Anmeldeinformationen | Hoch      | Offen   |
-| TC-010       | Überprüfung der Benutzeranmeldung mit falschen Anmeldeinformationen | Hoch      | Offen   |
-| TC-011       | Überprüfung der `deleteUser` Methode in `UserService` | Mittel      | Offen   |
-| TC-012       | Überprüfung der `updateUser` in `UserService` | Mittel      | Offen   |
-| TC-013       | Überprüfung der `getAllUsers` in `UserService` | Niedrig      | Offen   |
-| TC-014       | Überprüfung der `getUserById` in `UserService` | Mittel      | Offen   |
-| TC-015       | Überprüfung der `getUserMameByEmail` in `UserService` | Niedrig      | Abgeschlossen   |
+| TC-003       | Überprüfung der `loadUserByUsername` Methode, wenn der Benutzer nicht existiert | Hoch      | Abgeschlossen   |
+| TC-004       | Überprüfung der `saveMessage` Methode in `MessageService` | Mittel      | Abgeschlossen   |
+| TC-005       | Überprüfung der `getMessagesBetweenServerAndClient` Methode in `MessageService` | Mittel      | Abgeschlossen   |
+| TC-006       | !entfällt! | keine      | Abgeschlossen   |
+| TC-007       | Überprüfung der Passwortänderungsfunktionalität | Mittel      | Abgeschlossen   |
+| TC-008       | Überprüfung der E-Mail-Validierung bei der Registrierung eines neuen Benutzers | Hoch      | Abgeschlossen   |
+| TC-009       | Überprüfung der Benutzeranmeldung mit korrekten Anmeldeinformationen | Hoch      | Abgeschlossen   |
+| TC-010       | Überprüfung der Benutzeranmeldung mit falschen Anmeldeinformationen | Hoch      | Abgeschlossen   |
+| TC-011       | Überprüfung der `getUserById` in `UserService` | Mittel      | Abgeschlossen   |
+| TC-012       | Überprüfung der `getUserMameByEmail` in `UserService` | Niedrig      | Abgeschlossen   |
 
 ## Testfälle im Detail
 
@@ -211,9 +208,148 @@ class CustomUserDetailsServiceTest {
 }
 ```
 
+### Testfall TC-004: Überprüfung der `saveMessage` Methode in `MessageService`
+**Beschreibung:**
+Testet die saveMessage Methode des MessageService, um sicherzustellen, dass Nachrichten korrekt in der Datenbank gespeichert werden.
+
+**Voraussetzungen:**
+
+Die Tree Permit Anwendung ist installiert und läuft.
+Der MessageService und das MessageRepository sind konfiguriert.
+
+**Testdaten:**
+
+Eine Message Instanz mit dem Inhalt "Test message".
+
+**Schritte zur Ausführung:**
+
+Eine neue Message Instanz erstellen.
+Das MessageRepository so konfigurieren, dass es die gespeicherte Nachricht zurückgibt.
+Die saveMessage Methode des MessageService mit der Testnachricht aufrufen.
+Überprüfen, ob der Inhalt der zurückgegebenen Nachricht korrekt ist.
+Verifizieren, ob die save Methode des Repositories genau einmal aufgerufen wurde.
+
+**Erwartetes Ergebnis:**
+
+Die zurückgegebene Nachricht hat den Inhalt "Test message".
+Die save Methode des Repositories wurde genau einmal aufgerufen.
+
+**Tatsächliches Ergebnis:**
+Der Test war erfolgreich. Die zurückgegebene Nachricht hatte den erwarteten Inhalt, und die save Methode wurde korrekt aufgerufen.
+Ergebnis:
+Test war erfolgreich.
+Bemerkungen:
+Keine.
+
 --- 
 
-### Testfall TC-015: Überprüfung der `getUserNameByEmail` Methode in `UserService`
+### Testfall TC-005: Überprüfung der `getMessagesBetweenServerAndClient` Methode in `MessageService`
+
+**Beschreibung:**
+Testet die getMessagesBetweenServerAndClient Methode des MessageService, um sicherzustellen, dass die korrekten Nachrichten zwischen Server und Client abgerufen werden.
+Voraussetzungen:
+
+Die Tree Permit Anwendung ist installiert und läuft.
+Der MessageService und das MessageRepository sind konfiguriert.
+
+**Testdaten:**
+
+Client E-Mail: "client@example.com"
+Server Benutzername: "clerk"
+Eine Liste von zwei Message Instanzen
+
+**Schritte zur Ausführung:**
+
+Das MessageRepository so konfigurieren, dass es eine vordefinierte Liste von Nachrichten zurückgibt.
+Die getMessagesBetweenServerAndClient Methode des MessageService mit der Test-E-Mail aufrufen.
+Überprüfen, ob die zurückgegebene Liste von Nachrichten der erwarteten Liste entspricht.
+Verifizieren, ob die findMessagesBetween Methode des Repositories genau einmal mit den korrekten Parametern aufgerufen wurde.
+
+**Erwartetes Ergebnis:**
+
+Die zurückgegebene Liste von Nachrichten entspricht der erwarteten Liste.
+Die findMessagesBetween Methode des Repositories wurde genau einmal mit den korrekten Parametern aufgerufen.
+
+**Tatsächliches Ergebnis:**
+Der Test war erfolgreich. Die zurückgegebene Liste von Nachrichten entsprach der erwarteten Liste, und die findMessagesBetween Methode wurde korrekt aufgerufen.
+
+**Ergebnis:**
+Test war erfolgreich.
+
+**Bemerkungen:**
+Keine.
+
+---
+
+### Testfall TC-006: Registrierung eines neuen Benutzers
+
+**Beschreibung:**
+Testet die registerNewUser Methode des UserService, um sicherzustellen, dass neue Benutzer korrekt registriert werden.
+
+**Voraussetzungen:**
+Die Tree Permit Anwendung ist installiert und läuft.
+Der UserService und das UserRepository sind konfiguriert.
+
+**Testdaten:**
+Ein RegistrationDto Objekt mit Benutzername "newuser", E-Mail "newuser@example.com" und Passwort "password".
+ 
+**Schritte zur Ausführung:**
+Ein RegistrationDto Objekt mit Testdaten erstellen.
+Das UserRepository so konfigurieren, dass es einen gespeicherten Benutzer zurückgibt.
+Die registerNewUser Methode des UserService mit dem RegistrationDto aufrufen.
+Überprüfen, ob der zurückgegebene Benutzer die korrekten Daten enthält.
+Verifizieren, ob die save Methode des Repositories genau einmal aufgerufen wurde.
+
+**Erwartetes Ergebnis:**
+Der zurückgegebene Benutzer hat den Benutzernamen "newuser", die E-Mail "newuser@example.com" und die Rolle "ROLE_USER".
+Die save Methode des Repositories wurde genau einmal aufgerufen.
+
+**Tatsächliches Ergebnis:**
+Der Test war erfolgreich. Der zurückgegebene Benutzer hatte die erwarteten Daten, und die save Methode wurde korrekt aufgerufen.
+
+**Ergebnis:**
+Test war erfolgreich.
+
+**Bemerkungen:**
+Keine.
+
+---
+
+### Testfall TC-011: Überprüfung der `getUserById` in UserService
+
+**Beschreibung:**
+Testet die getUserNameByEmail Methode des UserService, um sicherzustellen, dass der korrekte Benutzername für eine gegebene E-Mail-Adresse zurückgegeben wird.
+
+**Voraussetzungen:**
+Die Tree Permit Anwendung ist installiert und läuft.
+Der UserService und das UserRepository sind konfiguriert.
+
+**Testdaten:**
+E-Mail: "existinguser@example.com"
+Benutzername: "existinguser"
+
+**Schritte zur Ausführung:**
+Das UserRepository so konfigurieren, dass es einen Benutzer für die Test-E-Mail zurückgibt.
+Die getUserNameByEmail Methode des UserService mit der Test-E-Mail aufrufen.
+Überprüfen, ob der zurückgegebene Benutzername korrekt ist.
+Verifizieren, ob die findByEmail Methode des Repositories genau einmal aufgerufen wurde.
+
+**Erwartetes Ergebnis:**
+Der zurückgegebene Benutzername ist "existinguser".
+Die findByEmail Methode des Repositories wurde genau einmal mit der korrekten E-Mail aufgerufen.
+
+**Tatsächliches Ergebnis:**
+Der Test war erfolgreich. Der zurückgegebene Benutzername entsprach dem erwarteten Wert, und die findByEmail Methode wurde korrekt aufgerufen.
+
+**Ergebnis:**
+Test war erfolgreich.
+
+**Bemerkungen:**
+Ein zusätzlicher Test für den Fall, dass kein Benutzer gefunden wird, wurde ebenfalls implementiert.
+
+---
+
+### Testfall TC-012: Überprüfung der `getUserNameByEmail` Methode in `UserService`
 
 **Anmerkung:**  
 Bedarf keiner extra Testausführung, da der Tests bereits in Testfall TC-001 geschehen ist und dort ausgeführt wurde.
