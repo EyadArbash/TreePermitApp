@@ -6,7 +6,6 @@
 2. Systemanforderungen
 3. Installation und Start
    - Git-Repository klonen
-   - ActiveMQ starten
    - Anwendung ausführen
 4. Benutzeranleitung
 5. Datenbankzugriff mit HeidiSQL
@@ -21,13 +20,9 @@ Willkommen bei TreePermitApp, einer Webanwendung zur Vereinfachung des Prozesses
 
 - Git
 - Java 8 oder höher
-- ActiveMQ
 - HeidiSQL (optional)
 
 ## 3. Installation und Start
-
-### ActiveMQ starten
-Sie müssen alle erstens ActiveMQ starten, bevor Sie die Anwendung ausführen können. Dafür müssen Sie die Datei `apache-activemq-5.15.0-bin.zip` entpacken und Sie die Datei `activemq.bat` unter Ordner `apache-activemq-5.15.0\bin\win32` ausführen.
 
 ### Git-Repository klonen
 
