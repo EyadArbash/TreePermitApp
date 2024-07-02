@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import treePermit.model.Message;
 import treePermit.model.Request;
-import treePermit.service.MessageSender;
 import treePermit.service.MessageService;
 import treePermit.service.UserService;
 import treePermit.repository.RequestRepository;
@@ -23,9 +22,6 @@ public class MessageController {
 
     @Autowired
     private MessageService messageService;
-
-    @Autowired
-    private MessageSender messageSender;
 
     @Autowired
     private RequestRepository requestRepository;
@@ -42,7 +38,6 @@ public class MessageController {
         message.setMessageDate(new Date());
         message.setSender(serverUserName);
         message.setReceiver(myrequest.getUser().getUsername());
-        messageSender.sendMessage("TreePermit", message);
         return messageService.saveMessage(message);
     }
     
@@ -53,7 +48,6 @@ public class MessageController {
     	message.setSender(myrequest.getUser().getUsername());
     	message.setMessageDate(new Date());
         message.setReceiver("clerk");
-        messageSender.sendMessage("TreePermit", message);
         return messageService.saveMessage(message);
     }
     
